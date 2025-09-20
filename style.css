@@ -1,0 +1,150 @@
+/* 🎨 Базовые стили */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* 🚀 Hero секция */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1554774853-b414d3ddf8d1?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.hero .overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero h1 span {
+  color: #ff9800;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* 🔘 Кнопки */
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #ff9800;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #e68900;
+}
+
+/* ℹ️ Общие секции */
+section {
+  padding: 60px 20px;
+  text-align: center;
+  background: white;
+  margin: 20px auto;
+  border-radius: 12px;
+  max-width: 1000px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* 📖 Список правил */
+.rules ul {
+  list-style: none;
+  padding: 0;
+}
+
+.rules li {
+  margin: 10px 0;
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+/* 🏆 Турнирная сетка */
+.bracket-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.round {
+  flex: 1;
+  margin: 10px;
+  padding: 20px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  background: #fafafa;
+  transition: transform 0.3s;
+}
+
+.round:hover {
+  transform: scale(1.05);
+}
+
+.round.winner {
+  border-color: #ff9800;
+  background: #fff3e0;
+  font-weight: bold;
+}
+
+/* 📝 Форма регистрации */
+.register form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+}
+
+.register input {
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.form-message {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* 📚 История */
+.history p {
+  margin: 10px 0;
+}
+
+/* ⚡ Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #222;
+  color: #fff;
+}
