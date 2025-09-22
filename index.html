@@ -585,93 +585,120 @@
     // Пометка чемпиона: round.winnerchamp = { pack: pIndex, index: tIndex } или pack.winnerchampIndex
     // -----------------------
     const TOURNAMENT_DATA = [
+  {
+    name: "Отборочные",
+    packs: [
       {
-        name: "Отборочные",
-        packs: [
-          {
-            title: "Пачка A — 7 класс",
-            teams: [
-              { name: "Альфа", grade: "7", branch: "Север" },
-              { name: "Бета",  grade: "7", branch: "Юг" },
-              { name: "Гамма", grade: "7", branch: "Север" },
-              { name: "Дельта", grade: "7", branch: "Юг" },
-              { name: "Эпсилон", grade: "7", branch: "Север" },
-              { name: "Зета", grade: "7", branch: "Юг" }
-            ],
-            winnerIndex: [0,1]
-          },
-          {
-            title: "Пачка B — 8 класс",
-            teams: [
-              { name: "Икс", grade: "8", branch: "Север" },
-              { name: "Йота", grade: "8", branch: "Юг" },
-              { name: "Каппа", grade: "8", branch: "Север" },
-              { name: "Лямбда", grade: "8", branch: "Юг" },
-              { name: "Мю", grade: "8", branch: "Север" },
-              { name: "Ню", grade: "8", branch: "Юг" }
-            ],
-            winnerIndex: [0,2]
-          },
-          {
-            title: "Пачка C — смешанная",
-            teams: [
-              { name: "Омега", grade: "9", branch: "Север" },
-              { name: "Пси", grade: "9", branch: "Юг" },
-              { name: "Ро", grade: "10", branch: "Север" },
-              { name: "Сигма", grade: "10", branch: "Юг" },
-              { name: "Тау", grade: "11", branch: "Север" },
-              { name: "Упсилон", grade: "11", branch: "Юг" }
-            ],
-            winnerIndex: [4,5]
-          }
-        ]
+        title: "Пачка A — 7 класс",
+        teams: [
+          { name: "Альфа", grade: "7", branch: "Север" },
+          { name: "Бета",  grade: "7", branch: "Юг" },
+          { name: "Гамма", grade: "7", branch: "Север" },
+          { name: "Дельта", grade: "7", branch: "Юг" },
+          { name: "Эпсилон", grade: "7", branch: "Север" },
+          { name: "Дзета", grade: "7", branch: "Юг" }
+        ],
+        winnerIndex: [0,1]
       },
       {
-        name: "Вторая стадия",
-        packs: [
-          {
-            title: "Пачка D",
-            teams: [
-              { name: null, grade: null, branch: null },
-              { name: null, grade: null, branch: null },
-              { name: null, grade: null, branch: null }
-            ]
-          },
-          {
-            title: "Пачка E",
-            teams: [
-              { name: null, grade: null, branch: null },
-              { name: null, grade: null, branch: null },
-              { name: null, grade: null, branch: null }
-            ]
-          }
-        ]
+        title: "Пачка B — 8 класс",
+        teams: [
+          { name: "Эта", grade: "8", branch: "Север" },
+          { name: "Тета", grade: "8", branch: "Юг" },
+          { name: "Йота", grade: "8", branch: "Север" },
+          { name: "Каппа", grade: "8", branch: "Юг" },
+          { name: "Лямбда", grade: "8", branch: "Север" },
+          { name: "Мю", grade: "8", branch: "Юг" }
+        ],
+        winnerIndex: [0,2]
       },
       {
-        name: "Полуфинал",
-        packs: [
-          { title: "Пачка F1", teams: [ {name:null,grade:null,branch:null}, {name:null,grade:null,branch:null} ] },
-          { title: "Пачка F2", teams: [ {name:null,grade:null,branch:null}, {name:null,grade:null,branch:null} ] }
-        ]
+        title: "Пачка C — 9 класс",
+        teams: [
+          { name: "Ню", grade: "9", branch: "Север" },
+          { name: "Кси", grade: "9", branch: "Юг" },
+          { name: "Омикрон", grade: "9", branch: "Север" },
+          { name: "Пи", grade: "9", branch: "Юг" },
+          { name: "Ро", grade: "9", branch: "Север" },
+          { name: "Сигма", grade: "9", branch: "Юг" }
+        ],
+        winnerIndex: [4,5]
       },
       {
-        name: "Финал",
-        winnerchamp: { pack: 0, index: 0 }, // пример: первый слот первой пачки — чемпион
-        packs: [
-          {
-            title: "Финальная пачка",
-            teams: [
-              { name: "Титул", grade: "11", branch: "Север" },
-              { name: "Претендент", grade: "11", branch: "Юг" }
-            ]
-          }
+        title: "Пачка C — 10 и 11 класс",
+        teams: [
+          { name: "Тау", grade: "10", branch: "Север" },
+          { name: "Ипсилон", grade: "10", branch: "Юг" },
+          { name: "Фи", grade: "10", branch: "Север" },
+          { name: "Хи", grade: "10", branch: "Юг" },
+          { name: "Пси", grade: "11", branch: "Север" },
+          { name: "Омега", grade: "11", branch: "Юг" }
+        ],
+        winnerIndex: [0,5]
+      }
+    ]
+  },
+  {
+    name: "Вторая стадия",
+    packs: [
+      {
+        title: "Пачка D — 78 регион",
+        teams: [
+          { name: "Альфа", grade: "7", branch: "Север" },
+          { name: "Бета",  grade: "7", branch: "Юг" },
+          { name: "Эта", grade: "8", branch: "Север" },
+          { name: "Йота", grade: "8", branch: "Север" }
+        ],
+        winnerIndex: [0,3]
+      },
+      {
+        title: "Пачка E — 9,10 и 11 классы",
+        teams: [
+          { name: "Ро", grade: "9", branch: "Север" },
+          { name: "Сигма", grade: "9", branch: "Юг" },
+          { name: "Тау", grade: "10", branch: "Север" },
+          { name: "Омега", grade: "11", branch: "Юг" }
+        ],
+        winnerIndex: [1,3]
+      }
+    ]
+  },
+  {
+    name: "Полуфинал",
+    packs: [
+      { 
+        title: "Пачка 1", 
+        teams: [ 
+          { name: "Альфа", grade: "7", branch: "Север" }, 
+          { name: "Йота", grade: "8", branch: "Север" } 
+        ],
+        winnerIndex: [0]
+      },
+      { 
+        title: "Пачка 2", 
+        teams: [ 
+          { name: "Сигма", grade: "9", branch: "Юг" }, 
+          { name: "Омега", grade: "11", branch: "Юг" } 
+        ],
+        winnerIndex: [1]
+      }
+    ]
+  },
+  {
+    name: "Финал",
+    winnerchamp: { pack: 0, index: 0 },
+    packs: [
+      {
+        title: "Финальная пачка",
+        teams: [
+          { name: "Альфа", grade: "7", branch: "Север" },
+          { name: "Омега", grade: "11", branch: "Юг" }
         ]
       }
-    ];
-
-    // -----------------------
-    // Внутренние методы рендера
-    // -----------------------
+    ]
+  }
+];
+ // ----------------------- // Внутренние методы рендера  // -----------------------
     function deepCopy(obj){ return JSON.parse(JSON.stringify(obj)); }
     function prepareRenderData(src){ return deepCopy(src); }
 
