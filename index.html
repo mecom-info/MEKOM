@@ -1,3 +1,4 @@
+       
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -8,15 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   /*
-    Улучшенная адаптивная версия (Вариант A — max-width: 980px сохранён).
-    Цели:
-      - Сохраняем структуру HTML и JS.
-      - Исправляем наложение "пузырьков" (floaters) — они теперь находятся ПОЗАДИ контента
-        и динамически перерасполагаются на больших экранах, чтобы не закрывать текст.
-      - Добавлены медиазапросы (720 / 960 / 1280 / 1600).
-      - Слегка увеличены шрифты для крупных экранов (ты просил — "оставь крупные").
+    Полная, улучшенная и единая версия.
+    Изменения/цели:
+      - max-width установлен в 1200px как ты просил.
+      - Поведение floaters исправлено: находятся позади контента, не накладываются на текст.
+      - Доп. медиазапросы для "крупных" экранов.
       - Поддержка prefers-reduced-motion.
-      - Мелкие улучшения UX / доступности и визуальные корректировки.
+      - Сохранена структура HTML/JS — логика сетки оставлена.
   */
 
   :root{
@@ -28,13 +27,13 @@
     --card:#ffffff;
     --glass: rgba(255,255,255,0.8);
     --radius:14px;
-    --maxwidth:980px; /* ты выбрал вариант 1 — оставляем */
+    --maxwidth:1200px; /* изменение: 1200px рамка сайта */
     --site-padding:18px;
     --base-font-size:15px;
     --ui-radius:12px;
   }
 
-  /* Accessible and consistent sizing */
+  /* Base sizing & reset */
   html { font-size: var(--base-font-size); box-sizing: border-box; }
   *,*::before,*::after{ box-sizing: inherit; }
   html,body{height:100%}
@@ -47,8 +46,6 @@
     -moz-osx-font-smoothing:grayscale;
     line-height:1.45;
     -webkit-tap-highlight-color:transparent;
-    -webkit-font-feature-settings: "liga" 1;
-    font-feature-settings: "liga";
   }
   a{color:inherit;text-decoration:none}
   img{max-width:100%;height:auto;display:block}
@@ -57,7 +54,7 @@
   /* ---------- HERO ---------- */
   header.hero{
     position:relative;
-    overflow:hidden; /* keeps floaters clipped so they don't overflow page edges */
+    overflow:hidden;
     border-radius:18px;
     padding:18px;
     background:
@@ -65,9 +62,8 @@
       linear-gradient(180deg, rgba(8,36,102,0.04), rgba(255,255,255,0.9));
     box-shadow:0 8px 30px rgba(12,24,60,0.06);
     min-height:110px;
-    display:block;
   }
-  /* Ensure hero content is above floaters */
+  /* Keep hero content above floaters */
   .hero-row{display:flex;gap:12px;align-items:center;position:relative; z-index:2}
   .logo{
     width:72px;height:72px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--blue-2));
@@ -82,22 +78,29 @@
   .btn{
     display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:700;font-size:14px;
     cursor:pointer;border:0;box-shadow:0 8px 24px rgba(10,30,120,0.06);
-    align-self:flex-start; /* ensure button baseline */
+    align-self:flex-start;
   }
   .btn:focus{ outline: none; box-shadow: 0 0 0 4px rgba(0,91,255,0.10); }
   .btn-primary{background:linear-gradient(90deg,var(--blue),var(--blue-2));color:white; animation:btn-glow 2.4s infinite;}
   @keyframes btn-glow{0%{box-shadow:0 8px 20px rgba(0,91,255,0.14)}50%{box-shadow:0 14px 30px rgba(0,91,255,0.22)}100%{box-shadow:0 8px 20px rgba(0,91,255,0.14)}}
   .btn-ghost{background:#fff;border:1px solid rgba(10,40,120,0.06);color:var(--muted)}
 
-  /* floating riff icons on hero */
-  /* floaters container behind content (z-index less than .hero-row) */
-  .floaters{position:absolute;inset:0;pointer-events:none;overflow:hidden; z-index:0}
+  /* ---------- FLOATERS (behind content) ---------- */
+  .floaters{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0; /* strictly behind hero content */
+    transition:opacity .28s ease, transform .28s ease;
+  }
+  .floaters.hidden { opacity:0; transform: translateY(6px); pointer-events:none; }
   .riff {
     position:absolute;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;
     background:linear-gradient(180deg,var(--soft),#e6f3ff);color:var(--blue);opacity:0.95;box-shadow:0 6px 18px rgba(10,30,100,0.08);
     transform-origin:center;
     will-change:transform;
-    /* ensure floaters don't receive focus */
+    pointer-events:none;
   }
   .riff.small{width:34px;height:34px}
   @keyframes riff-float {0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(8deg)}100%{transform:translateY(0) rotate(0)}}
@@ -135,7 +138,7 @@
   tbody td{padding:12px;border-bottom:1px dashed rgba(10,30,80,0.04)}
   .amount{font-weight:800;text-align:right;color:var(--blue-2);font-variant-numeric:tabular-nums}
 
-  /* ---------- PRIZES SECTION (styling taken from "каша") ---------- */
+  /* ---------- PRIZES SECTION ---------- */
   .prizes-section{
     background: linear-gradient(90deg,var(--blue),var(--blue-2));
     color: #fff;
@@ -153,25 +156,9 @@
     gap:10px;
     animation:prizesFadeIn 520ms cubic-bezier(.2,.9,.2,1);
   }
-  .prizes-table{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    margin-top:6px;
-  }
-  .prize-row{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.06);
-    font-weight:700;
-    animation:prizeRowIn 420ms ease;
-  }
-  .prize-row .label{font-weight:700}
-  .prize-row .value{font-variant-numeric:tabular-nums}
-  .prize-row.highlight{
-    background:linear-gradient(90deg,#fff5cc,#ffe680);
-    color:#533f00;
-    box-shadow:0 10px 30px rgba(255,193,7,0.06);
-  }
+  .prizes-table{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+  .prize-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.06);font-weight:700;animation:prizeRowIn 420ms ease}
+  .prize-row.highlight{background:linear-gradient(90deg,#fff5cc,#ffe680);color:#533f00;box-shadow:0 10px 30px rgba(255,193,7,0.06)}
   @keyframes prizesFadeIn { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:none} }
   @keyframes prizeRowIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
 
@@ -204,7 +191,7 @@
   .muted-2{color:#4b5563;font-size:13px}
 
   /* ===========================================================
-     MECOM BRACKET — заменённый блок стилей (улучшенная версия)
+     MECOM BRACKET — улучшенная версия стилей
      =========================================================== */
   .mecom-bracket{--me-blue:#005BFF;--me-blue-2:#2b7bff;--me-soft:#A7D8FF;background: linear-gradient(90deg,rgba(7,48,159,0.03),rgba(0,91,255,0.02));border-radius:12px;padding:10px;box-sizing:border-box;color:#0b1220;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
   .mecom-rounds-nav{display:flex;gap:6px;position:sticky;top:8px;z-index:5;margin-bottom:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
@@ -212,13 +199,11 @@
   .mecom-rounds-nav .mecom-chip{background:rgba(0,91,255,0.06);color:var(--me-blue);padding:8px 10px;border-radius:999px;font-weight:700;cursor:pointer;border:0;font-size:12px;white-space:nowrap;}
   .mecom-rounds-nav .mecom-chip.is-active{background:linear-gradient(90deg,var(--me-blue),var(--me-blue-2));color:#fff;}
 
-  /* important layout tweak: top-align slides so short slides don't force big container space */
   .mecom-swiper{position:relative;overflow:hidden;border-radius:10px;background:linear-gradient(180deg,#fff,#f7fbff);border:1px solid rgba(10,30,80,0.04);transition:height .26s ease;}
   .mecom-swiper-track{display:flex;width:100%;will-change:transform;transform:translate3d(0,0,0);transition:transform .26s ease;touch-action:pan-y;align-items:flex-start;}
   .mecom-slide{min-width:100%;padding:10px;align-self:flex-start;display:flex;flex-direction:column;}
   .mecom-round-title{font-weight:800;margin-bottom:8px;color:#0b234d;display:flex;justify-content:space-between;align-items:center}
 
-  /* PACK & TEAM: layout (class/branch on left; team name on right) */
   .pack{border-radius:12px;padding:10px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid rgba(10,40,120,0.04);margin-bottom:12px}
   .pack-title{font-weight:800;color:#0b234d;margin-bottom:8px;display:flex;align-items:center;gap:8px}
   .pack-contents{display:flex;flex-direction:column;gap:8px}
@@ -230,7 +215,6 @@
   .mecom-team.empty-slot{opacity:0.6;font-style:italic;color:var(--muted);padding:6px 12px;height:28px;display:flex;align-items:center;justify-content:flex-end;}
   .mecom-team.placeholder{background:transparent;border:1px dashed rgba(0,0,0,0.03)}
 
-  /* TAGS: класс и филиал — цветные пиллы */
   .mecom-tag{font-size:11px;font-weight:800;padding:4px 6px;border-radius:999px;line-height:1;display:inline-block}
   .mecom-tag-grade{background:rgba(0,0,0,0.06);color:#111}
   .mecom-tag-north{background:rgba(0,92,255,0.09);color:var(--blue)}
@@ -238,12 +222,10 @@
   .mecom-tag-east{background:rgba(255,160,60,0.10);color:#d35400}
   .mecom-tag-west{background:rgba(88,165,90,0.10);color:#1e9b4a}
 
-  /* WINNERS */
   .mecom-team.winner{background:linear-gradient(90deg,var(--me-soft),#dff4ff);box-shadow:0 10px 30px rgba(0,110,255,0.06)}
   .mecom-team.winner .team-name{color:var(--blue)}
   .mecom-team.winner .team-name::after{content:" 🏅";margin-left:8px}
 
-  /* CHAMPION style */
   .mecom-team.champion{background: linear-gradient(90deg,#fff5cc,#ffe680);color:#533f00;border:1px solid rgba(255,193,7,0.12);box-shadow:0 12px 30px rgba(255,193,7,0.08)}
   .mecom-team.champion .team-name{ color:#533f00 }
   .mecom-team.champion .team-name::after{ content: " 👑"; margin-left:8px; }
@@ -257,7 +239,7 @@
   @media(min-width:960px){ .mecom-swiper{ border-radius:12px } }
   @media (max-width:560px){ .mecom-team .team-name{ font-size:14px } }
 
-  /* ========== NEW: outline-chip (visibility for "Ближайший чемпионат") ========== */
+  /* outline-chip (Ближайший чемпионат) */
   .outline-chip {
     display:inline-flex;
     align-items:center;
@@ -280,16 +262,12 @@
     transform:translateY(-3px);
     box-shadow: 0 12px 30px rgba(37,98,255,0.12);
   }
-  .outline-chip:active { transform:translateY(0); box-shadow: 0 6px 16px rgba(6,30,80,0.06); }
   .outline-chip:focus { outline: none; box-shadow: 0 0 0 4px rgba(0,91,255,0.10); }
 
-  /* make chip full width on small screens if needed */
-  @media(max-width:540px){
-    .outline-chip{ width:100%; justify-content:center; }
-  }
+  @media(max-width:540px){ .outline-chip{ width:100%; justify-content:center; } }
 
   /* =========================
-     Responsive tweaks (desktop optimizations)
+     Responsive tweaks
      ========================= */
   @media (min-width:720px){
     :root { --base-font-size:15.5px; }
@@ -304,10 +282,7 @@
   @media (min-width:960px){
     :root { --base-font-size:16px; }
     .wrap{ padding:28px; }
-    header.hero{
-      padding:28px 36px;
-      min-height:160px;
-    }
+    header.hero{ padding:28px 36px; min-height:160px; }
     .hero h1{ font-size:22px; }
     .hero .tag{ font-size:15px; }
     .logo{ width:92px;height:92px;font-size:24px; }
@@ -337,15 +312,13 @@
     .logo{ width:120px;height:120px;font-size:30px; }
   }
 
-  /* =========================
-     Reduced motion: respect user preference
-     ========================= */
+  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .logo, .riff, .btn-primary { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition: none !important; }
     .fade-in{ transition:none; transform:none; opacity:1; }
   }
 
-  /* small helpers for very large screens — keep content centered and readable */
+  /* very large screens keep content centered */
   @media (min-width:1400px){
     .wrap{ max-width:var(--maxwidth); margin-left: auto; margin-right: auto; }
   }
@@ -355,29 +328,39 @@
 <body>
   <div class="wrap">
     <!-- HERO -->
-    <header class="hero">
+    <header class="hero" id="hero">
       <div class="floaters" aria-hidden="true">
-        <div class="riff" style="left:6%;top:10%"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="white" opacity="0.06"/><path d="M6 12c2-5 10-5 10 0-2 5-10 5-10 0z" fill="#005BFF" opacity="0.18"/></svg></div>
-        <div class="riff small" style="right:6%;top:22%"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M6 12c2-5 10-5 10 0-2 5-10 5-10 0z" fill="#2b7bff"/></svg></div>
-        <div class="riff" style="left:8%;bottom:10%"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 3c5 0 9 4 9 9s-4 9-9 9S3 17 3 12 7 3 12 3z" fill="#A7D8FF"/></svg></div>
+        <!-- initial inline positions provided but may be overridden by JS for large screens -->
+        <div class="riff" id="riff-1" style="left:6%;top:10%" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="white" opacity="0.06"/>
+            <path d="M6 12c2-5 10-5 10 0-2 5-10 5-10 0z" fill="#005BFF" opacity="0.18"/>
+          </svg>
+        </div>
+        <div class="riff small" id="riff-2" style="right:6%;top:22%" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12c2-5 10-5 10 0-2 5-10 5-10 0z" fill="#2b7bff"/></svg>
+        </div>
+        <div class="riff" id="riff-3" style="left:8%;bottom:10%" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c5 0 9 4 9 9s-4 9-9 9S3 17 3 12 7 3 12 3z" fill="#A7D8FF"/></svg>
+        </div>
       </div>
 
       <div class="hero-row">
-        <div class="logo" aria-hidden="true"><a href="https://www.youtube.com/watch?v=HIcSWuKMwOw" target="_blank" rel="noopener">МЕМ</a></div>
+        <div class="logo" aria-hidden="true"><a href="#" tabindex="-1" aria-hidden="true" rel="noopener">МЕМ</a></div>
         <div style="flex:1">
           <h1 id="hero-title">МЭКОМ — экономика, азарт и риф</h1>
           <div class="tag muted"> Корпорация МЕКОМ — экономические игры между старшими классами (с 7 по 11, Южного и Северного филиала) школы Взмах </div>
           <div class="ctas">
-            <button class="btn btn-primary" onclick="scrollToId('how')">Как играть</button>
-            <button class="btn btn-ghost" onclick="scrollToId('reg')">Регистрация</button>
+            <button class="btn btn-primary" onclick="scrollToId('how')" aria-label="Перейти к секции 'Как играть'">Как играть</button>
+            <button class="btn btn-ghost" onclick="scrollToId('reg')" aria-label="Перейти к секции 'Регистрация'">Регистрация</button>
           </div>
         </div>
       </div>
     </header>
 
     <!-- ABOUT / WHAT IS MEKOM -->
-    <section id="about" class="fade-in">
-      <h2>Что такое МЭКОМ?</h2>
+    <section id="about" class="fade-in" aria-labelledby="aboutTitle">
+      <h2 id="aboutTitle">Что такое МЭКОМ?</h2>
       <p class="muted">МЭКОМ — внутренняя школьная экономическая игра: команды из разных классов соревнуются в сериях раундов, принимают бизнес-решения и «зарабатывают» наивысший <strong>риф</strong> — рейтинговый индекс фирмы. Чем лучше стратегия и командная игра, тем выше шанс пройти в финал.</p>
       <div style="margin-top:12px" class="cols">
         <div>
@@ -399,21 +382,18 @@
         </div>
 
         <aside class="bracket-info fade-in" style="padding:8px">
-          <!-- ========== ЗАМЕНЕНО: теперь это визуальная outline-кнопка с иконкой (SVG inline — no external deps) ========== -->
           <button
             type="button"
             class="outline-chip"
             aria-label="Ближайший чемпионат — Южный филиал. Перейти к турнирной сетке."
             onclick="scrollToId('tournament')"
           >
-            <!-- inline trophy svg -->
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
               <path d="M7 4h10v2a4 4 0 0 1-4 4H11A4 4 0 0 1 7 6V4z" fill="currentColor" opacity="0.12"/>
               <path d="M9 3h6v2a3 3 0 0 1-3 3H12a3 3 0 0 1-3-3V3z" fill="currentColor"/>
               <path d="M5 8a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v1a5 5 0 0 1-5 5h-6A5 5 0 0 1 5 9V8z" fill="currentColor" opacity="0.08"/>
             </svg>
-            <span>Ближайший чемпионат — южный филиал
-</span>
+            <span>Ближайший чемпионат — южный филиал</span>
           </button>
 
           <p class="muted" style="margin-top:8px">Следите за обновлениями в телеграме МЕКОМ (<a href="https://t.me/mekom_info" target="_blank" rel="noopener">@mekom_info</a>)</p>
@@ -423,8 +403,8 @@
     </section>
 
     <!-- HOW TO WIN -->
-    <section id="how" class="fade-in">
-      <h2>Как выиграть ВСЁ</h2>
+    <section id="how" class="fade-in" aria-labelledby="howTitle">
+      <h2 id="howTitle">Как выиграть ВСЁ</h2>
       <div class="steps" style="margin-top:12px">
         <div class="card">
           <div class="icon">👥</div>
@@ -465,8 +445,8 @@
     </section>
 
     <!-- HOW TO PLAY (decisions) -->
-    <section id="how-play" class="fade-in">
-      <h2>Как играть — суть и решения</h2>
+    <section id="how-play" class="fade-in" aria-labelledby="howPlayTitle">
+      <h2 id="howPlayTitle">Как играть — суть и решения</h2>
       <p class="muted">В каждом периоде вы принимаете 5 ключевых решений, которые формируют результаты фирмы и влияют на РИФ.</p>
 
       <div class="steps" style="margin-top:12px">
@@ -543,21 +523,20 @@
       </div>
     </section>
 
-    <!-- ========================= TOURNAMENT (REPLACED BLOCK) ========================= -->
+    <!-- TOURNAMENT -->
     <section id="tournament" class="fade-in" aria-label="Турнирная сетка">
       <h2>Турнирная сетка — этапы</h2>
 
       <div id="mecom-bracket" class="mecom-bracket" data-storage-key="mecom_bracket_state_v4" data-auto-seed="true">
-        <div class="mecom-rounds-nav" id="mecomRoundsNav"></div>
+        <div class="mecom-rounds-nav" id="mecomRoundsNav" role="tablist" aria-label="Раунды"></div>
 
-        <div class="mecom-swiper" id="mecomSwiper">
+        <div class="mecom-swiper" id="mecomSwiper" aria-live="polite">
           <div class="mecom-swiper-track" id="mecomSwiperTrack"></div>
         </div>
 
-        <div class="mecom-dots" id="mecomDots"></div>
+        <div class="mecom-dots" id="mecomDots" aria-hidden="true"></div>
       </div>
     </section>
-    <!-- ======================= / TOURNAMENT ======================= -->
 
     <!-- WHY MEKOM -->
     <section id="why" class="fade-in">
@@ -575,7 +554,6 @@
       <h2>Как принять участие</h2>
       <p class="muted">Соберите команду, зарегистрируйтесь и готовьтесь к раундам. Заполнив форму, вы спустя какое-то время получите подтверждение/отказ в регистрации. В случае подтверждения регистрации команды, название вашей команды отобразиться на самом сайте в таблице, а именно в разделе отборочные! </p>
 
-      <!-- полностью кликабельная кнопка -->
       <a
         class="btn btn-primary submit"
         href="https://forms.gle/Zo1daNJ5sn5e5AcJ6"
@@ -596,7 +574,7 @@
       </p>
     </section>
 
-    <footer class="fade-in">
+    <footer class="fade-in" role="contentinfo">
       <div style="font-weight:700">Корпорация МЕКОМ</div>
       <div class="muted" style="margin-top:6px">Сделано в школе, но на мировом уровне, с хитростью и дерзостью.</div>
     </footer>
@@ -605,15 +583,11 @@
 <script>
   "use strict";
 
-  /* --------------------
-     Основные общие утилиты и эффекты (scroll, fade-in, counters, floaters, title-typing)
-     Оставлены и улучшены — не ломаем логику, расширяем (без удаления).
-     -------------------- */
-
   // ----- smooth scroll to id -----
   function scrollToId(id){
     const el = document.getElementById(id);
     if(!el) return;
+    // offset adjustment: ensure element not hidden behind any sticky elements (none prominent here)
     el.scrollIntoView({behavior:'smooth',block:'start'});
   }
 
@@ -637,7 +611,7 @@
     return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g," ");
   }
 
-  // ----- animateCounter (only define if not present) -----
+  // ----- animateCounter -----
   if(typeof window.animateCounter !== 'function'){
     window.animateCounter = function(el, target, duration=1200){
       const startTime = performance.now();
@@ -653,7 +627,7 @@
     };
   }
 
-  // ----- initialize prize counters when visible -----
+  // ----- prize counters when visible -----
   (function initPrizeCounters(){
     const counters = document.querySelectorAll('.counter');
     if(!counters || counters.length === 0) return;
@@ -670,80 +644,81 @@
     counters.forEach(c=> cIO.observe(c));
   })();
 
-  // ----- floating riff animations (randomized) -----
+  // ----- Floaters (smart positioning + reduced-motion respect) -----
   (function initFloaters(){
     const floaters = Array.from(document.querySelectorAll('.riff'));
-    if(!floaters || floaters.length === 0) return;
+    const floatersContainer = document.querySelector('.floaters');
+    if(!floaters || floaters.length === 0 || !floatersContainer) return;
 
-    // Respect reduced motion
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Helper: position floaters smartly based on screen width to avoid overlap with hero text
     function positionFloaters(){
       const w = window.innerWidth || document.documentElement.clientWidth;
-      // We'll apply safe positions programmatically, overriding inline attributes.
-      // This allows us to move floaters to screen edges on large screens so they don't overlap hero content.
-      if(w >= 1280){
-        // very wide — move floaters to the far edges
-        if(floaters[0]) { floaters[0].style.left = '2%'; floaters[0].style.top = '8%'; }
-        if(floaters[1]) { floaters[1].style.right = '2%'; floaters[1].style.top = '18%'; floaters[1].style.left = ''; }
+      // Programmatically set safe positions to avoid covering hero text/buttons on larger screens
+      if(w >= 1400){
+        if(floaters[0]) { floaters[0].style.left = '2%'; floaters[0].style.top = '8%'; floaters[0].style.right = ''; }
+        if(floaters[1]) { floaters[1].style.right = '2%'; floaters[1].style.top = '14%'; floaters[1].style.left = ''; }
         if(floaters[2]) { floaters[2].style.right = '6%'; floaters[2].style.bottom = '6%'; floaters[2].style.left = ''; floaters[2].style.top = ''; }
       } else if(w >= 960){
-        // medium-wide — moderate edge positions
-        if(floaters[0]) { floaters[0].style.left = '3%'; floaters[0].style.top = '10%'; }
+        if(floaters[0]) { floaters[0].style.left = '3%'; floaters[0].style.top = '10%'; floaters[0].style.right = ''; }
         if(floaters[1]) { floaters[1].style.right = '4%'; floaters[1].style.top = '16%'; floaters[1].style.left = ''; }
         if(floaters[2]) { floaters[2].style.left = '6%'; floaters[2].style.bottom = '10%'; floaters[2].style.right = ''; floaters[2].style.top = ''; }
       } else {
-        // mobile / small — keep original inline positions or defaults
+        // small screens: keep compact positions
         if(floaters[0]) { floaters[0].style.left = '6%'; floaters[0].style.top = '10%'; floaters[0].style.right = ''; }
         if(floaters[1]) { floaters[1].style.right = '6%'; floaters[1].style.top = '22%'; floaters[1].style.left = ''; }
         if(floaters[2]) { floaters[2].style.left = '8%'; floaters[2].style.bottom = '10%'; floaters[2].style.right = ''; floaters[2].style.top = ''; }
       }
     }
 
-    // Apply animation or disable based on reduced motion
     floaters.forEach((el, i)=>{
+      el.style.pointerEvents = 'none';
+      // staggered animation, respect reduced motion
       if(!reduce){
-        // staggered durations for variety
-        const dur = 4 + (i%3);
-        el.style.animation = `riff-float ${dur}s ${i*0.3}s ease-in-out infinite`;
+        const dur = 4 + (i % 3);
+        el.style.animation = `riff-float ${dur}s ${i*0.28}s ease-in-out infinite`;
       } else {
         el.style.animation = 'none';
       }
-      // Ensure floaters never receive pointer events
-      el.style.pointerEvents = 'none';
-      // lower z-index so they stay behind hero content
-      el.style.zIndex = '0';
+      el.style.zIndex = '0'; // ensure they are behind the hero content (hero-row z-index:2)
     });
 
-    // Parallax-like subtle effect on scroll (keeps animation but moves whole group slightly)
-    // We'll apply translateY via JS to keep things smooth and avoid transform conflicts.
-    const floatersContainer = document.querySelector('.floaters');
+    // Parallax-like subtle container translation on scroll (keeps individual animations intact)
     if(!reduce){
       window.addEventListener('scroll', ()=>{
         const sc = window.scrollY || window.pageYOffset || 0;
-        // subtle upward movement of the whole container (multiplied)
         const y = sc * 0.02;
-        // apply transform on container — this preserves individual animation transforms
-        if(floatersContainer) floatersContainer.style.transform = `translateY(${y}px)`;
+        floatersContainer.style.transform = `translateY(${y}px)`;
       }, {passive:true});
     } else {
-      if(floatersContainer) floatersContainer.style.transform = 'none';
+      floatersContainer.style.transform = 'none';
     }
 
-    // smart reposition on resize to avoid overlap with hero title/buttons
-    function onResize(){
-      positionFloaters();
-      // adjust container transform immediatelly
-      if(floatersContainer) floatersContainer.style.transform = 'translateY(0)';
+    // Prevent floaters from overlapping other major sections:
+    // When the tournament swiper enters the viewport (user scrolled down),
+    // hide floaters to guarantee they "не накладываются на первый слайд".
+    const tournamentEl = document.getElementById('mecomSwiper');
+    if(tournamentEl){
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting){
+            // hide floaters
+            floatersContainer.classList.add('hidden');
+          } else {
+            floatersContainer.classList.remove('hidden');
+          }
+        });
+      }, {root:null, threshold: 0.02});
+      obs.observe(tournamentEl);
     }
-    window.addEventListener('resize', onResize, {passive:true});
-    // init positions
+
+    // reposition on resize
+    window.addEventListener('resize', ()=>{ positionFloaters(); }, {passive:true});
+    // initial positioning
     positionFloaters();
-
   })();
 
-  // ----- tiny typing for hero title -----
+  // ----- Hero title typing (respect reduced motion) -----
   (function typeTitle(){
     const el = document.getElementById('hero-title');
     if(!el) return;
@@ -752,7 +727,6 @@
     let idx = 0;
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(reduce){
-      // if user prefers reduced motion — skip typing animation
       el.textContent = text;
       return;
     }
@@ -777,140 +751,131 @@
 
   /* ===========================================================
      MECOM BRACKET — полностью изолированная реализация турнирной сетки
-     Вставлена отдельно, чтобы заменить старую сетку. Всё, что нужно —
-     правь переменную TOURNAMENT_DATA ниже.
      ============================================================ */
   (function(){
-    // локальные короткие селекторы
     const qs = (s, r=document) => r.querySelector(s);
     const qsa = (s, r=document) => Array.from((r||document).querySelectorAll(s));
 
-    // Рендер-опции
     const RENDER_OPTIONS = { keepEmptySlots: false };
 
-    // -----------------------
-    // ДАННЫЕ: правь только эту переменную (TOURNAMENT_DATA)
-    // -----------------------
     const TOURNAMENT_DATA = [
-  {
-    name: "Отборочные",
-    packs: [
       {
-        title: "Пачка A — 7 класс",
-        teams: [
-          { name: "Альфа", grade: "7", branch: "Север" },
-          { name: "Бета",  grade: "7", branch: "Юг" },
-          { name: "Гамма", grade: "7", branch: "Север" },
-          { name: "Дельта", grade: "7", branch: "Юг" },
-          { name: "Эпсилон", grade: "7", branch: "Север" },
-          { name: "Дзета", grade: "7", branch: "Юг" }
-        ],
-        winnerIndex: [0,1]
+        name: "Отборочные",
+        packs: [
+          {
+            title: "Пачка A — 7 класс",
+            teams: [
+              { name: "Альфа", grade: "7", branch: "Север" },
+              { name: "Бета",  grade: "7", branch: "Юг" },
+              { name: "Гамма", grade: "7", branch: "Север" },
+              { name: "Дельта", grade: "7", branch: "Юг" },
+              { name: "Эпсилон", grade: "7", branch: "Север" },
+              { name: "Дзета", grade: "7", branch: "Юг" }
+            ],
+            winnerIndex: [0,1]
+          },
+          {
+            title: "Пачка B — 8 класс",
+            teams: [
+              { name: "Эта", grade: "8", branch: "Север" },
+              { name: "Тета", grade: "8", branch: "Юг" },
+              { name: "Йота", grade: "8", branch: "Север" },
+              { name: "Каппа", grade: "8", branch: "Юг" },
+              { name: "Лямбда", grade: "8", branch: "Север" },
+              { name: "Мю", grade: "8", branch: "Юг" }
+            ],
+            winnerIndex: [0,2]
+          },
+          {
+            title: "Пачка C — 9 класс",
+            teams: [
+              { name: "Ню", grade: "9", branch: "Север" },
+              { name: "Кси", grade: "9", branch: "Юг" },
+              { name: "Омикрон", grade: "9", branch: "Север" },
+              { name: "Пи", grade: "9", branch: "Юг" },
+              { name: "Ро", grade: "9", branch: "Север" },
+              { name: "Сигма", grade: "9", branch: "Юг" }
+            ],
+            winnerIndex: [4,5]
+          },
+          {
+            title: "Пачка C — 10 и 11 класс",
+            teams: [
+              { name: "Тау", grade: "10", branch: "Север" },
+              { name: "Ипсилон", grade: "10", branch: "Юг" },
+              { name: "Фи", grade: "10", branch: "Север" },
+              { name: "Хи", grade: "10", branch: "Юг" },
+              { name: "Пси", grade: "11", branch: "Север" },
+              { name: "Омега", grade: "11", branch: "Юг" }
+            ],
+            winnerIndex: [0,5]
+          }
+        ]
       },
       {
-        title: "Пачка B — 8 класс",
-        teams: [
-          { name: "Эта", grade: "8", branch: "Север" },
-          { name: "Тета", grade: "8", branch: "Юг" },
-          { name: "Йота", grade: "8", branch: "Север" },
-          { name: "Каппа", grade: "8", branch: "Юг" },
-          { name: "Лямбда", grade: "8", branch: "Север" },
-          { name: "Мю", grade: "8", branch: "Юг" }
-        ],
-        winnerIndex: [0,2]
+        name: "Вторая стадия",
+        packs: [
+          {
+            title: "Пачка D — 78 регион",
+            teams: [
+              { name: "Альфа", grade: "7", branch: "Север" },
+              { name: "Бета",  grade: "7", branch: "Юг" },
+              { name: "Эта", grade: "8", branch: "Север" },
+              { name: "Йота", grade: "8", branch: "Север" }
+            ],
+            winnerIndex: [0,3]
+          },
+          {
+            title: "Пачка E — 9,10 и 11 классы",
+            teams: [
+              { name: "Ро", grade: "9", branch: "Север" },
+              { name: "Сигма", grade: "9", branch: "Юг" },
+              { name: "Тау", grade: "10", branch: "Север" },
+              { name: "Омега", grade: "11", branch: "Юг" }
+            ],
+            winnerIndex: [1,3]
+          }
+        ]
       },
       {
-        title: "Пачка C — 9 класс",
-        teams: [
-          { name: "Ню", grade: "9", branch: "Север" },
-          { name: "Кси", grade: "9", branch: "Юг" },
-          { name: "Омикрон", grade: "9", branch: "Север" },
-          { name: "Пи", grade: "9", branch: "Юг" },
-          { name: "Ро", grade: "9", branch: "Север" },
-          { name: "Сигма", grade: "9", branch: "Юг" }
-        ],
-        winnerIndex: [4,5]
+        name: "Полуфинал",
+        packs: [
+          {
+            title: "Пачка 1",
+            teams: [
+              { name: "Альфа", grade: "7", branch: "Север" },
+              { name: "Йота", grade: "8", branch: "Север" }
+            ],
+            winnerIndex: [0]
+          },
+          {
+            title: "Пачка 2",
+            teams: [
+              { name: "Сигма", grade: "9", branch: "Юг" },
+              { name: "Омега", grade: "11", branch: "Юг" }
+            ],
+            winnerIndex: [1]
+          }
+        ]
       },
       {
-        title: "Пачка C — 10 и 11 класс",
-        teams: [
-          { name: "Тау", grade: "10", branch: "Север" },
-          { name: "Ипсилон", grade: "10", branch: "Юг" },
-          { name: "Фи", grade: "10", branch: "Север" },
-          { name: "Хи", grade: "10", branch: "Юг" },
-          { name: "Пси", grade: "11", branch: "Север" },
-          { name: "Омега", grade: "11", branch: "Юг" }
-        ],
-        winnerIndex: [0,5]
-      }
-    ]
-  },
-  {
-    name: "Вторая стадия",
-    packs: [
-      {
-        title: "Пачка D — 78 регион",
-        teams: [
-          { name: "Альфа", grade: "7", branch: "Север" },
-          { name: "Бета",  grade: "7", branch: "Юг" },
-          { name: "Эта", grade: "8", branch: "Север" },
-          { name: "Йота", grade: "8", branch: "Север" }
-        ],
-        winnerIndex: [0,3]
-      },
-      {
-        title: "Пачка E — 9,10 и 11 классы",
-        teams: [
-          { name: "Ро", grade: "9", branch: "Север" },
-          { name: "Сигма", grade: "9", branch: "Юг" },
-          { name: "Тау", grade: "10", branch: "Север" },
-          { name: "Омега", grade: "11", branch: "Юг" }
-        ],
-        winnerIndex: [1,3]
-      }
-    ]
-  },
-  {
-    name: "Полуфинал",
-    packs: [
-      { 
-        title: "Пачка 1", 
-        teams: [ 
-          { name: "Альфа", grade: "7", branch: "Север" }, 
-          { name: "Йота", grade: "8", branch: "Север" } 
-        ],
-        winnerIndex: [0]
-      },
-      { 
-        title: "Пачка 2", 
-        teams: [ 
-          { name: "Сигма", grade: "9", branch: "Юг" }, 
-          { name: "Омега", grade: "11", branch: "Юг" } 
-        ],
-        winnerIndex: [1]
-      }
-    ]
-  },
-  {
-    name: "Финал",
-    winnerchamp: { pack: 0, index: 0 },
-    packs: [
-      {
-        title: "Финальная пачка",
-        teams: [
-          { name: "Альфа", grade: "7", branch: "Север" },
-          { name: "Омега", grade: "11", branch: "Юг" }
+        name: "Финал",
+        winnerchamp: { pack: 0, index: 0 },
+        packs: [
+          {
+            title: "Финальная пачка",
+            teams: [
+              { name: "Альфа", grade: "7", branch: "Север" },
+              { name: "Омега", grade: "11", branch: "Юг" }
+            ]
+          }
         ]
       }
-    ]
-  }
-];
+    ];
 
-    // ----------------------- // Внутренние методы рендера  // -----------------------
     function deepCopy(obj){ return JSON.parse(JSON.stringify(obj)); }
     function prepareRenderData(src){ return deepCopy(src); }
 
-    // DOM references for this bracket
     const ROOT = qs('#mecom-bracket');
     if(!ROOT){
       console.warn('[MECOM] #mecom-bracket not found — сетка не инициализирована');
@@ -921,13 +886,11 @@
     const track = qs('#mecomSwiperTrack', ROOT);
     const dotsEl = qs('#mecomDots', ROOT);
 
-    // load/save using data-storage-key if provided
     const STORAGE_KEY = ROOT.getAttribute('data-storage-key') || 'mecom_bracket_state_vX';
     const AUTO_SEED = (ROOT.getAttribute('data-auto-seed') || 'true') === 'true';
 
     let renderData = prepareRenderData(TOURNAMENT_DATA);
 
-    // Render navigation (round chips)
     function renderNav(activeIdx=0){
       navEl.innerHTML = '';
       renderData.forEach((r, idx)=>{
@@ -940,7 +903,6 @@
       });
     }
 
-    // Render dots (pager)
     function renderDots(activeIdx=0){
       dotsEl.innerHTML = '';
       renderData.forEach((_, idx)=>{
@@ -951,21 +913,18 @@
       });
     }
 
-    // Render slides (each round)
     function renderSlides(){
       track.innerHTML = '';
       renderData.forEach((round, rIndex)=>{
         const slide = document.createElement('div');
         slide.className = 'mecom-slide fade-in';
 
-        // title
         const title = document.createElement('div');
         title.className = 'mecom-round-title';
         const left = document.createElement('div'); left.textContent = round.name || `Раунд ${rIndex+1}`;
         title.appendChild(left);
         slide.appendChild(title);
 
-        // Iterate packs
         (round.packs || []).forEach((pack, pIndex)=>{
           const packEl = document.createElement('div');
           packEl.className = 'pack';
@@ -978,7 +937,6 @@
           const contents = document.createElement('div'); contents.className = 'pack-contents';
 
           (pack.teams || []).forEach((team, tIndex)=>{
-            // Empty/team placeholder handling
             if(!team || !team.name){
               if(RENDER_OPTIONS.keepEmptySlots){
                 const teamEl = document.createElement('div');
@@ -998,21 +956,18 @@
             const teamEl = document.createElement('div');
             teamEl.className = 'mecom-team';
 
-            // winner highlighting (pack-level)
             if(typeof pack.winnerIndex === 'number' && pack.winnerIndex === tIndex) teamEl.classList.add('winner');
             else if(Array.isArray(pack.winnerIndex) && pack.winnerIndex.includes(tIndex)) teamEl.classList.add('winner');
 
-            // champion detection (pack-level or round-level)
             const isChampion =
               (typeof pack.winnerchampIndex === 'number' && pack.winnerchampIndex === tIndex)
               || (round && round.winnerchamp && round.winnerchamp.pack === pIndex && round.winnerchamp.index === tIndex);
 
             if(isChampion){
               teamEl.classList.add('champion');
-              teamEl.classList.remove('winner'); // champion visual takes precedence
+              teamEl.classList.remove('winner');
             }
 
-            // left block (grade + branch) unless explicitly hidden
             const leftBlock = document.createElement('div'); leftBlock.className = 'left';
             if(!(team && team.noDescription)){
               const cls = document.createElement('span'); cls.className = 'mecom-tag mecom-tag-grade';
@@ -1033,13 +988,11 @@
               leftBlock.appendChild(br);
             }
 
-            // right block (name)
             const rightBlock = document.createElement('div'); rightBlock.className = 'name-wrap';
             const nameDiv = document.createElement('div'); nameDiv.className = 'team-name';
             nameDiv.textContent = team && team.name ? team.name : '(пусто)';
             rightBlock.appendChild(nameDiv);
 
-            // optionally show promoted-note if present and flagged
             if(team && team._promotedFrom && team._showPromoted && !(team.noDescription)){
               const note = document.createElement('div');
               note.className = 'promoted-note';
@@ -1059,16 +1012,13 @@
         track.appendChild(slide);
       });
 
-      // trigger fade-ins (after DOM insert)
+      // trigger fade-ins (post DOM insert)
       requestAnimationFrame(()=> {
         qsa('.mecom-slide.fade-in', track).forEach(el => el.classList.add('show'));
         setTimeout(()=> updateHeightForSlide(current), 30);
       });
     }
 
-    // -----------------------
-    // Swiper: touch + mouse drag
-    // -----------------------
     let current = 0;
     let startX = 0, startY = 0, curX = 0;
     let dragging = false;
@@ -1099,7 +1049,6 @@
       current = Math.max(0, Math.min(i, renderData.length-1));
       setTranslate(-current*width, true);
       setTimeout(()=> updateHeightForSlide(current), 120);
-      // update chips and dots
       const chips = navEl.querySelectorAll('.mecom-chip');
       chips.forEach((c, idx)=> c.classList.toggle('is-active', idx===current));
       const dots = dotsEl.querySelectorAll('.mecom-dot');
@@ -1142,19 +1091,14 @@
     function attachSwipe(){
       updateWidth();
       updateHeightForSlide(current);
-      // touch
       swiper.addEventListener('touchstart', onStart, {passive:true});
       swiper.addEventListener('touchmove',  onMove,  {passive:false});
       swiper.addEventListener('touchend',   onEnd,   {passive:true});
-      // mouse desktop
       swiper.addEventListener('mousedown', (e)=>{ e.preventDefault(); onStart(e); });
       window.addEventListener('mousemove', onMove);
       window.addEventListener('mouseup', onEnd);
     }
 
-    // -----------------------
-    // Persistence: load/save (localStorage)
-    // -----------------------
     function saveState(obj){
       try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); }catch(e){}
     }
@@ -1166,38 +1110,30 @@
       }catch(e){ return null; }
     }
 
-    // -----------------------
-    // Render wrapper + helpers: initialize, render nav/dots/slides
-    // -----------------------
     function renderAll(){
       renderSlides();
       renderNav(current);
       renderDots(current);
-      // set initial position
       setTranslate(-current*width, false);
       updateHeightForSlide(current);
     }
 
     function init(){
-      // Attempt to load persisted state (but do not auto-promote winners)
       const saved = loadState();
       if(saved && Array.isArray(saved)){
         renderData = saved;
       }else if(saved && saved.rounds){
-        // support older format (rounds) — convert
         renderData = Array.isArray(saved.rounds) ? saved.rounds.map(r=>{
           return { name: r.name, packs: [ { title: 'Слоты', teams: (r.teams||[]).map(t=>({name:t})) } ] };
         }) : prepareRenderData(TOURNAMENT_DATA);
       } else {
-        // no saved state — use default
         renderData = prepareRenderData(TOURNAMENT_DATA);
       }
 
-      // Render and wire interactions
       renderAll();
       attachSwipe();
 
-      // expose small API for debugging from console
+      // Expose debug API
       window.MECOM_BRACKET_V2 = {
         getState: ()=> deepCopy(renderData),
         setState: (obj)=>{ if(Array.isArray(obj)){ renderData = deepCopy(obj); saveState(renderData); renderAll(); } },
@@ -1208,6 +1144,7 @@
     init();
 
   })(); // end bracket IIFE
+
 </script>
 </body>
 </html>
