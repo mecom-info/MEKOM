@@ -1,11 +1,10 @@
-       
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Корпорация МЕКОМ — экономическая игра МЭКОМ</title>
-<meta name="description" content="МЭКОМ — экономические игры между классами (7–11). Правила, сетка, регистрация." />
+<title>Корпорация МЭКОМ — экономическая игра МЭКОМ</title>
+<meta name="description" content="МЭКОМ — экономические игры между классами (7–11). Правила, сетку, регистрация." />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   /*
@@ -190,6 +189,88 @@
   .flex{display:flex;gap:8px;align-items:center}
   .muted-2{color:#4b5563;font-size:13px}
 
+  /* =========================
+     РИФ (styling) - добавлено из кода 1
+     ========================= */
+  .rif-section { padding: 14px; border-radius:12px; background: linear-gradient(180deg,#fff,#fbfdff); border:1px solid rgba(10,40,120,0.04); box-shadow:0 8px 26px rgba(12,24,56,0.04); }
+  .rif-grid { display:grid; grid-template-columns: 1fr; gap:12px; align-items:stretch; }
+  @media(min-width:720px){ .rif-grid { grid-template-columns: 1fr 320px; } }
+
+  .rif-left { display:flex; flex-direction:column; gap:12px; }
+  .rif-intro { font-size:14px; color:var(--muted); }
+  .rif-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+  @media(max-width:560px){ .rif-cards { grid-template-columns:1fr; } }
+
+  /* circular factor card */
+  .rif-factor {
+    background:linear-gradient(180deg,#fff,#f7fbff);
+    border-radius:12px;
+    padding:10px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    border:1px solid rgba(10,40,120,0.04);
+    cursor: pointer;
+  }
+  .rif-factor:focus { outline: 2px solid rgba(0,91,255,0.10); }
+  .rif-factor .svg-wrap { width:64px; height:64px; flex:0 0 64px; position:relative; }
+  .rif-factor svg { display:block; width:64px; height:64px; }
+  .rif-factor .label { font-weight:800; font-size:13px; color:#0b234d; }
+  .rif-factor .desc { font-size:12px; color:var(--muted); margin-top:4px; }
+
+  /* progress bar alternative for the right column */
+  .rif-right { display:flex; flex-direction:column; gap:12px; align-items:stretch; }
+  .rif-total {
+    display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:linear-gradient(90deg,#fff,#f0f8ff);border:1px solid rgba(10,40,120,0.04);
+  }
+  .rif-total .total-value { font-weight:900; font-size:28px; color:var(--blue); }
+  .rif-total .total-label { color:var(--muted); font-size:13px; }
+
+  .rif-bars { display:flex; flex-direction:column; gap:10px; }
+  .rif-bar {
+    background:rgba(8,36,102,0.03);
+    border-radius:10px;
+    padding:10px;
+    display:flex;flex-direction:column;gap:6px;
+  }
+  .rif-bar .row { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+  .rif-bar .bar-track { height:10px; background:rgba(0,0,0,0.06); border-radius:999px; overflow:hidden; }
+  .rif-bar .bar-fill { height:100%; width:0%; border-radius:999px; background: linear-gradient(90deg,var(--blue),var(--blue-2)); transition:width .9s cubic-bezier(.2,.9,.2,1); }
+
+  .rif-note { font-size:12px; color:var(--muted); }
+
+  /* accordion (Интересный факт) */
+  .accordion { margin-top:10px; border-radius:10px; overflow:hidden; border:1px solid rgba(10,40,120,0.04); background:linear-gradient(180deg,#fff,#fbfdff); }
+  .accordion .trigger { 
+    display:flex; 
+    justify-content:space-between; 
+    align-items:center; 
+    width:100%; 
+    padding:12px; 
+    background:transparent; 
+    border:0; 
+    cursor:pointer; 
+    font-weight:800; 
+    color:var(--muted);
+    border: 1px solid rgba(10,40,120,0.06);
+  }
+  .accordion .content { padding:0 12px; max-height:0; overflow:hidden; transition: max-height 320ms cubic-bezier(.2,.9,.2,1), opacity 220ms ease; opacity:0; }
+  .accordion.open .content { opacity:1; padding:12px; }
+  .accordion .content p { margin:0; color:var(--muted); font-size:13px; line-height:1.45; }
+
+  /* ИЗМЕНЕНИЕ 1: Цвет текста "Интересный факт" в синий при открытии */
+  .accordion.open .trigger { color: #005BFF; }
+
+  /* Новый стиль для подписи под диаграммой РИФ */
+  .rif-record-label {
+    font-size: 11px;
+    color: var(--blue);
+    font-weight: 600;
+    text-align: center;
+    margin-top: 4px;
+    line-height: 1.2;
+  }
+
   /* ===========================================================
      MECOM BRACKET — улучшенная версия стилей
      =========================================================== */
@@ -314,7 +395,7 @@
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .logo, .riff, .btn-primary { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition: none !important; }
+    .logo, .riff, .btn-primary, .rif-factor svg, .rif-factor .svg-wrap, .rif-bar .bar-fill { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition: none !important; }
     .fade-in{ transition:none; transform:none; opacity:1; }
   }
 
@@ -388,6 +469,8 @@
             aria-label="Ближайший чемпионат — Южный филиал. Перейти к турнирной сетке."
             onclick="scrollToId('tournament')"
           >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M7 10l5 5 5-5z"/>
             </svg>
             <span>Ближайший чемпионат — южный филиал</span>
           </button>
@@ -488,6 +571,173 @@
       </div>
     </section>
 
+    <!-- СЕКЦИЯ РИФ - добавлено из кода 1 -->
+    <section id="rif" class="fade-in rif-section" aria-labelledby="rif-title" style="margin-top:16px;">
+      <h2 id="rif-title">Что такое РИФ?</h2>
+      <div class="rif-grid" style="margin-top:10px;">
+        <!-- left: cards -->
+        <div class="rif-left">
+          <div class="rif-intro">
+            <strong>РИФ (Рейтинговый Индекс Фирмы)</strong> — интегральный показатель, отражающий эффективность фирмы в турнире. Он складывается из шести факторов. Ниже — краткие описания и визуализация каждого фактора (демонстрационные значения и максимумы показаны рядом).
+          </div>
+        <!-- right: totals -->
+        <div class="rif-right" aria-hidden="false">
+          <div class="rif-total" role="status" aria-live="polite">
+            <div style="flex:1">
+              <div class="total-label">Сумма всех факторов РИФ</div>
+              <div class="total-value" id="rifTotal">0</div>
+              <div class="rif-note">Сумма всех факторов: Накопленная прибыль + Потенциал спроса + Эффективность + Доля рынка + Рост</div>
+            </div>
+            <div style="width:120px; text-align:center;">
+              <!-- small donut for current game RIF -->
+              <svg viewBox="0 0 36 36" width="80" height="80" aria-hidden="true">
+                <path d="M18 2.0845
+                         a 15.9155 15.9155 0 0 1 0 31.831
+                         a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="3.2"></path>
+                <path class="total-ring" d="M18 2.0845
+                         a 15.9155 15.9155 0 0 1 0 31.831
+                         a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none" stroke="url(#tg)" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="100 100" stroke-dashoffset="100"></path>
+                <defs>
+                  <linearGradient id="tg" x1="0" x2="1"><stop offset="0" stop-color="#005BFF"/><stop offset="1" stop-color="#2b7bff"/></linearGradient>
+                </defs>
+                <text x="18" y="21" font-size="8" text-anchor="middle" fill="#0b234d" font-weight="800" id="totalDonutText">0</text>
+              </svg>
+              <div class="rif-record-label">Наивысший показатель РИФа в последней игре!</div>
+            </div>
+          </div>
+
+          <div class="rif-cards" aria-hidden="false">
+            <!-- Factor: Накопленная прибыль (max 400 для вклада в РИФ) -->
+            <div class="rif-factor" data-factor="profit" role="group" aria-label="Накопленная прибыль">
+              <div class="svg-wrap" aria-hidden="true">
+                <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+                  <!-- base track -->
+                  <circle cx="50" cy="50" r="42" stroke="rgba(0,0,0,0.06)" stroke-width="12" fill="none"></circle>
+                  <!-- animated ring - ОРАНЖЕВЫЙ цвет -->
+                  <circle class="ring" cx="50" cy="50" r="42" stroke-width="12" stroke-linecap="round" stroke="url(#g1)" fill="none" stroke-dasharray="0" stroke-dashoffset="0"></circle>
+                  <defs>
+                    <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#ff7b00"/><stop offset="1" stop-color="#ffa726"/></linearGradient>
+                  </defs>
+                  <text x="50" y="58" text-anchor="middle" font-size="20" font-weight="800" fill="#0b234d" class="ring-value">0</text>
+                </svg>
+              </div>
+              <div style="flex:1">
+                <div class="label">Накопленная прибыль</div>
+                <div class="desc">Главный компонент РИФ — вклад в итог до <strong>400</strong> пунктов (в демонстрации: значение и визуализация).</div>
+              </div>
+            </div>
+
+            <!-- Потенциал спроса (max 20) -->
+            <div class="rif-factor" data-factor="demand" role="group" aria-label="Потенциал спроса">
+              <div class="svg-wrap" aria-hidden="true">
+                <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+                  <circle cx="50" cy="50" r="42" stroke="rgba(0,0,0,0.06)" stroke-width="12" fill="none"></circle>
+                  <circle class="ring" cx="50" cy="50" r="42" stroke-width="12" stroke-linecap="round" stroke="url(#g2)" fill="none" stroke-dasharray="0" stroke-dashoffset="0"></circle>
+                  <defs>
+                    <linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#00aaff"/><stop offset="1" stop-color="#66b8ff"/></linearGradient>
+                  </defs>
+                  <text x="50" y="58" text-anchor="middle" font-size="18" font-weight="800" fill="#0b234d" class="ring-value">0</text>
+                </svg>
+              </div>
+              <div style="flex:1">
+                <div class="label">Потенциал спроса</div>
+                <div class="desc">Маркетинг и НИОКР — до <strong>20</strong> пунктов (демо/максимум указаны рядом).</div>
+              </div>
+            </div>
+
+            <!-- Потенциальное предложение (max 20) -->
+            <div class="rif-factor" data-factor="supply" role="group" aria-label="Потенциальное предложение">
+              <div class="svg-wrap" aria-hidden="true">
+                <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+                  <circle cx="50" cy="50" r="42" stroke="rgba(0,0,0,0.06)" stroke-width="12" fill="none"></circle>
+                  <circle class="ring" cx="50" cy="50" r="42" stroke-width="12" stroke-linecap="round" stroke="url(#g3)" fill="none" stroke-dasharray="0" stroke-dashoffset="0"></circle>
+                  <defs>
+                    <linearGradient id="g3" x1="0" x2="1"><stop offset="0" stop-color="#45c67a"/><stop offset="1" stop-color="#8fe0a1"/></linearGradient>
+                  </defs>
+                  <text x="50" y="58" text-anchor="middle" font-size="18" font-weight="800" fill="#0b234d" class="ring-value">0</text>
+                </svg>
+              </div>
+              <div style="flex:1">
+                <div class="label">Потенциальное предложение</div>
+                <div class="desc">Доля в общем производстве — до <strong>20</strong> пунктов.</div>
+              </div>
+            </div>
+
+            <!-- Эффективность 80% (max 10) -->
+            <div class="rif-factor" data-factor="efficiency" role="group" aria-label="Эффективность">
+              <div class="svg-wrap" aria-hidden="true">
+                <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+                  <circle cx="50" cy="50" r="42" stroke="rgba(0,0,0,0.06)" stroke-width="12" fill="none"></circle>
+                  <circle class="ring" cx="50" cy="50" r="42" stroke-width="12" stroke-linecap="round" stroke="url(#g4)" fill="none" stroke-dasharray="0" stroke-dashoffset="0"></circle>
+                  <defs>
+                    <linearGradient id="g4" x1="0" x2="1"><stop offset="0" stop-color="#ffb400"/><stop offset="1" stop-color="#ffd66e"/></linearGradient>
+                  </defs>
+                  <text x="50" y="58" text-anchor="middle" font-size="18" font-weight="800" fill="#0b234d" class="ring-value">0</text>
+                </svg>
+              </div>
+              <div style="flex:1">
+                <div class="label">Эффективность</div>
+                <div class="desc">Оценивает загрузку фабрики; оптимальная загрузка даёт максимум — <strong>10</strong> пунктов.</div>
+              </div>
+            </div>
+
+            <!-- Доля рынка (max 20) -->
+            <div class="rif-factor" data-factor="market" role="group" aria-label="Доля рынка">
+              <div class="svg-wrap" aria-hidden="true">
+                <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+                  <circle cx="50" cy="50" r="42" stroke="rgba(0,0,0,0.06)" stroke-width="12" fill="none"></circle>
+                  <circle class="ring" cx="50" cy="50" r="42" stroke-width="12" stroke-linecap="round" stroke="url(#g5)" fill="none" stroke-dasharray="0" stroke-dashoffset="0"></circle>
+                  <defs>
+                    <linearGradient id="g5" x1="0" x2="1"><stop offset="0" stop-color="#ff5b9a"/><stop offset="1" stop-color="#ff87c6"/></linearGradient>
+                  </defs>
+                  <text x="50" y="58" text-anchor="middle" font-size="18" font-weight="800" fill="#0b234d" class="ring-value">0</text>
+                </svg>
+              </div>
+              <div style="flex:1">
+                <div class="label">Доля рынка</div>
+                <div class="desc">Ваша доля продаж в рынке — до <strong>20</strong> пунктов.</div>
+              </div>
+            </div>
+
+            <!-- Рост (max 20) -->
+            <div class="rif-factor" data-factor="growth" role="group" aria-label="Рост">
+              <div class="svg-wrap" aria-hidden="true">
+                <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+                  <circle cx="50" cy="50" r="42" stroke="rgba(0,0,0,0.06)" stroke-width="12" fill="none"></circle>
+                  <circle class="ring" cx="50" cy="50" r="42" stroke-width="12" stroke-linecap="round" stroke="url(#g6)" fill="none" stroke-dasharray="0" stroke-dashoffset="0"></circle>
+                  <defs>
+                    <linearGradient id="g6" x1="0" x2="1"><stop offset="0" stop-color="#7b61ff"/><stop offset="1" stop-color="#b79bff"/></linearGradient>
+                  </defs>
+                  <text x="50" y="58" text-anchor="middle" font-size="18" font-weight="800" fill="#0b234d" class="ring-value">0</text>
+                </svg>
+              </div>
+              <div style="flex:1">
+                <div class="label">Рост</div>
+                <div class="desc">Темп роста сбыта относительно индустрии — до <strong>20</strong> пунктов.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Аккордеон: Интересный факт (про нулевой период и точные значения) -->
+      <div class="accordion" id="rif-fact" aria-hidden="false" style="margin-top:12px;">
+        <button class="trigger" aria-expanded="false" aria-controls="rif-fact-content">Интересный факт <span aria-hidden="true">▾</span></button>
+        <div class="content" id="rif-fact-content">
+          <p>
+            В нулевом периоде все фирмы стартуют с одинакового базового РИФ, который складывается из шести компонентов. Формально это выглядит так (очки указываются в пунктах, не в процентах): Накопленная прибыль — <strong>50</strong> пунктов, Потенциал спроса — <strong>10</strong>, Потенциальное предложение — <strong>10</strong>, Эффективность — <strong>10</strong>, Доля рынка — <strong>10</strong>, Рост — <strong>10</strong>. Итого: базовый РИФ = <strong>100</strong> пунктов.
+          </p>
+          <p style="margin-top:8px;">
+            Технически: накопленная прибыль как показатель не имеет практического потолка (теоретически может расти очень сильно), однако её вклад в РИФ ограничен рамкой (вклад в расчёт — до 50 пунктов). Остальные факторы — относительные и имеют указанные максимально возможные вклады (в реальной игре значения считаются по формулам и относительны к средним по индустрии).
+          </p>
+          <p style="margin-top:8px;color:#334155;font-style:italic;">Коротко: ноль — это стартовый «100». Всё, что дальше — вопрос стратегии, маркетинга и умения избегать увольнения директора (шутка, не увольняют).</p>
+        </div>
+      </div>
+
+    </section>
+
     <!-- PRIZES -->
     <section id="prizes" class="prizes-section fade-in" aria-label="Призовые">
       <div class="section-title">🏆 Призовые на Чемпионат</div>
@@ -572,7 +822,7 @@
 
     <footer class="fade-in" role="contentinfo">
       <div style="font-weight:700">Корпорация МЕКОМ</div>
-      <div class="muted" style="margin-top:10px">Сделано в школе, но на мировом уровне, с хитростью и дерзостью.</div>
+      <div class="muted" style="margin-top:6px">Сделано в школе, но на мировом уровне, с хитростью и дерзостью.</div>
     </footer>
   </div>
 
@@ -744,6 +994,239 @@
     const team = (document.querySelector('input[name="team"]') || {}).value || '';
     alert('Заявка принята: ' + (team ? team : 'команда без имени') + '. Организаторы свяжутся в телеграме.');
   }
+
+  /* =========================================================
+     РИФ: логика анимации и демо-значения - добавлено из кода 1
+     ========================================================= */
+  (function initRif(){
+    const rifSection = document.querySelector('#rif');
+    if(!rifSection) return;
+
+    // Максимальные вклады в РИФ (пункты)
+    const MAX = {
+      profit: 400,
+      demand: 20,
+      supply: 20,
+      efficiency: 10,
+      market: 20,
+      growth: 20
+    };
+
+    // Демонстрация - значения факторов
+    const demo = {
+      profit: 237,
+      demand: 12,
+      supply: 10,
+      efficiency: 8,
+      market: 5,
+      growth: 15
+    };
+
+    // Значение в центральной диаграмме
+    const LAST_GAME_RIF = 164;
+
+    // Helpers and elements
+    const factorEls = document.querySelectorAll('.rif-factor');
+    const barEls = document.querySelectorAll('.rif-bar');
+    const totalEl = document.querySelector('#rifTotal');
+    const totalDonutText = document.querySelector('#totalDonutText');
+    const totalRing = document.querySelector('.total-ring');
+
+    // Build factor map (cur & max)
+    const factors = {
+      profit: { cur: demo.profit, max: MAX.profit },
+      demand: { cur: demo.demand, max: MAX.demand },
+      supply: { cur: demo.supply, max: MAX.supply },
+      efficiency: { cur: demo.efficiency, max: MAX.efficiency },
+      market: { cur: demo.market, max: MAX.market },
+      growth: { cur: demo.growth, max: MAX.growth }
+    };
+
+    // sum points (demo) - сумма всех факторов
+    const totalPoints = Object.keys(factors).reduce((s,k)=> s + factors[k].cur, 0);
+
+    // Prepare rings: compute circumference and set initial dasharray/dashoffset
+    function prepareRings(){
+      factorEls.forEach(el=>{
+        const ring = el.querySelector('.ring');
+        if(!ring) return;
+        const r = parseFloat(ring.getAttribute('r')) || 42;
+        const circumference = 2 * Math.PI * r;
+        ring.style.strokeDasharray = String(circumference);
+        ring.style.strokeDashoffset = String(circumference);
+      });
+    }
+    prepareRings();
+
+    // animate routine
+    function animateRif(){
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // rings & inner numbers
+      factorEls.forEach((el, idx)=>{
+        const key = el.dataset.factor;
+        const f = factors[key];
+        if(!f) return;
+        const ring = el.querySelector('.ring');
+        const textNode = el.querySelector('.ring-value');
+        // percentage of factor max (0..100)
+        const pct = (f.max > 0) ? Math.round((f.cur / f.max) * 100) : 100;
+        // compute circumference from current ring stroke-dasharray
+        const dashStr = ring.style.strokeDasharray || ring.getAttribute('stroke-dasharray') || '';
+        const circumference = parseFloat(dashStr) || (2 * Math.PI * 42);
+
+        const offset = circumference * (1 - (pct / 100));
+        if(reduce){
+          ring.style.transition = 'none';
+          ring.style.strokeDashoffset = offset;
+          if(textNode) textNode.textContent = String(f.cur);
+        } else {
+          // animate stroke offset
+          ring.style.transition = 'stroke-dashoffset 1100ms cubic-bezier(.2,.9,.2,1)';
+          // small stagger
+          setTimeout(()=> { ring.style.strokeDashoffset = offset; }, idx * 80);
+          // animate inner number
+          if(textNode){
+            const start = performance.now();
+            const duration = 900;
+            const from = 0;
+            (function tick(now){
+              const t = Math.min((now - start)/duration, 1);
+              const curVal = Math.floor(from + (f.cur - from) * t);
+              textNode.textContent = String(curVal);
+              if(t < 1) requestAnimationFrame(tick);
+              else textNode.textContent = String(f.cur);
+            })(performance.now());
+          }
+        }
+      });
+
+      // bars
+      barEls.forEach((bar, idx)=>{
+        const key = bar.dataset.bar;
+        const f = factors[key];
+        if(!f) return;
+        const fill = bar.querySelector('.bar-fill');
+        const countEl = bar.querySelector('[data-count]');
+        const pct = Math.round((f.cur / f.max) * 100);
+        if(!fill) return;
+        if(reduce){
+          fill.style.width = pct + '%';
+          if(countEl) countEl.textContent = String(f.cur);
+        } else {
+          setTimeout(()=> { fill.style.width = pct + '%'; }, 60 + idx * 80);
+          if(countEl){
+            const start = performance.now();
+            const duration = 900;
+            (function tick(now){
+              const t = Math.min((now - start)/duration, 1);
+              const curVal = Math.floor(0 + (f.cur - 0) * t);
+              countEl.textContent = String(curVal);
+              if(t < 1) requestAnimationFrame(tick);
+              else countEl.textContent = String(f.cur);
+            })(performance.now());
+          }
+        }
+      });
+
+      // total - соотношение LAST_GAME_RIF к сумме всех факторов
+      const totalValue = LAST_GAME_RIF;
+      const totalPercentage = (LAST_GAME_RIF / totalPoints) * 100;
+
+      if(reduce){
+        if(totalEl) totalEl.textContent = String(totalPoints);
+        if(totalDonutText) totalDonutText.textContent = String(totalValue);
+        if(totalRing) totalRing.style.strokeDashoffset = String(100 - totalPercentage);
+      } else {
+        if(totalEl){
+          const start = performance.now();
+          const duration = 1100;
+          (function tick(now){
+            const t = Math.min((now - start)/duration, 1);
+            const curVal = Math.floor(0 + (totalPoints - 0) * t);
+            totalEl.textContent = String(curVal);
+            if(t < 1) requestAnimationFrame(tick);
+            else totalEl.textContent = String(totalPoints);
+          })(performance.now());
+        }
+        if(totalRing){
+          totalRing.style.transition = 'stroke-dashoffset 1100ms cubic-bezier(.2,.9,.2,1)';
+          setTimeout(()=> totalRing.style.strokeDashoffset = String(100 - totalPercentage), 30);
+        }
+        if(totalDonutText){
+          const start = performance.now();
+          const duration = 1100;
+          (function tick(now){
+            const t = Math.min((now - start)/duration, 1);
+            const curVal = Math.floor(0 + (totalValue - 0) * t);
+            totalDonutText.textContent = String(curVal);
+            if(t < 1) requestAnimationFrame(tick);
+            else totalDonutText.textContent = String(totalValue);
+          })(performance.now());
+        }
+      }
+    }
+
+    // trigger animation once when in view
+    const obs = new IntersectionObserver((entries, o)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){
+          animateRif();
+          o.unobserve(en.target);
+        }
+      });
+    }, {threshold: 0.18});
+    obs.observe(rifSection);
+
+    factorEls.forEach(fe=>{
+      fe.tabIndex = 0;
+    });
+  })();
+
+  /* =========================================================
+     Аккордеон: Интересный факт — управление открытием/закрытием - добавлено из кода 1
+     ========================================================= */
+  (function initAccordion(){
+    const accordions = document.querySelectorAll('.accordion');
+    if(!accordions.length) return;
+    accordions.forEach(acc=>{
+      const trigger = acc.querySelector('.trigger');
+      const content = acc.querySelector('.content');
+      if(!trigger || !content) return;
+      // Ensure initial collapsed state
+      content.style.maxHeight = '0px';
+      content.style.opacity = '0';
+      trigger.addEventListener('click', ()=>{
+        const open = acc.classList.contains('open');
+        if(open){
+          // close
+          acc.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+          // animate collapse: set explicit height to current, then to 0
+          const h = content.scrollHeight;
+          content.style.maxHeight = h + 'px';
+          // allow the browser to paint
+          requestAnimationFrame(()=> {
+            content.style.maxHeight = '0px';
+            content.style.opacity = '0';
+          });
+          // remove padding via JS after animation
+          setTimeout(()=> { content.style.padding = '0 12px'; }, 320);
+        } else {
+          // open
+          acc.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+          // restore padding first so layout includes it
+          content.style.padding = '12px';
+          const h = content.scrollHeight;
+          content.style.maxHeight = h + 'px';
+          content.style.opacity = '1';
+          // after animation remove maxHeight to allow internal changes (optional)
+          setTimeout(()=> { content.style.maxHeight = 'none'; }, 400);
+        }
+      });
+    });
+  })();
 
   /* ===========================================================
      MECOM BRACKET — полностью изолированная реализация турнирной сетки
@@ -1144,6 +1627,3 @@
 </script>
 </body>
 </html>
-
-
-
