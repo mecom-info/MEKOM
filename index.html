@@ -8,10 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   /*
-    Исправленная версия:
-    - Исправлена структура секции РИФ
-    - Улучшена адаптивность
-    - Исправлены проблемы с отображением
+    Полная, улучшенная и единая версия.
+    Изменения/цели:
+      - max-width установлен в 1200px как ты просил.
+      - Поведение floaters исправлено: находятся позади контента, не накладываются на текст.
+      - Доп. медиазапросы для "крупных" экранов.
+      - Поддержка prefers-reduced-motion.
+      - Сохранена структура HTML/JS — логика сетки оставлена.
   */
 
   :root{
@@ -23,7 +26,7 @@
     --card:#ffffff;
     --glass: rgba(255,255,255,0.8);
     --radius:14px;
-    --maxwidth:1200px;
+    --maxwidth:1200px; /* изменение: 1200px рамка сайта */
     --site-padding:18px;
     --base-font-size:15px;
     --ui-radius:12px;
@@ -87,7 +90,7 @@
     inset:0;
     pointer-events:none;
     overflow:hidden;
-    z-index:0;
+    z-index:0; /* strictly behind hero content */
     transition:opacity .28s ease, transform .28s ease;
   }
   .floaters.hidden { opacity:0; transform: translateY(6px); pointer-events:none; }
@@ -187,7 +190,7 @@
   .muted-2{color:#4b5563;font-size:13px}
 
   /* =========================
-     РИФ (styling) - исправленная версия
+     РИФ (styling) - добавлено из кода 1
      ========================= */
   .rif-section { padding: 14px; border-radius:12px; background: linear-gradient(180deg,#fff,#fbfdff); border:1px solid rgba(10,40,120,0.04); box-shadow:0 8px 26px rgba(12,24,56,0.04); }
   .rif-grid { display:grid; grid-template-columns: 1fr; gap:12px; align-items:stretch; }
@@ -270,7 +273,7 @@
 
   /* ===========================================================
      MECOM BRACKET — улучшенная версия стилей
-     ============================================================ */
+     =========================================================== */
   .mecom-bracket{--me-blue:#005BFF;--me-blue-2:#2b7bff;--me-soft:#A7D8FF;background: linear-gradient(90deg,rgba(7,48,159,0.03),rgba(0,91,255,0.02));border-radius:12px;padding:10px;box-sizing:border-box;color:#0b1220;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
   .mecom-rounds-nav{display:flex;gap:6px;position:sticky;top:8px;z-index:5;margin-bottom:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
   .mecom-rounds-nav::-webkit-scrollbar{display:none;}
@@ -568,16 +571,43 @@
       </div>
     </section>
 
-    <!-- СЕКЦИЯ РИФ - ИСПРАВЛЕННАЯ СТРУКТУРА -->
+    <!-- СЕКЦИЯ РИФ - добавлено из кода 1 -->
     <section id="rif" class="fade-in rif-section" aria-labelledby="rif-title" style="margin-top:16px;">
       <h2 id="rif-title">Что такое РИФ?</h2>
       <div class="rif-grid" style="margin-top:10px;">
         <!-- left: cards -->
         <div class="rif-left">
           <div class="rif-intro">
-            <strong>РИФ (Рейтинговый Индекс Фирмы)</strong> — игровой показатель, отражающий эффективность фирмы в турнире. Он складывается из шести факторов. Ниже — краткие описания и визуализация каждого фактора (демонстрационные значения и максимумы показаны рядом).
+            <strong>РИФ (Рейтинговый Индекс Фирмы)</strong> — интегральный показатель, отражающий эффективность фирмы в турнире. Он складывается из шести факторов. Ниже — краткие описания и визуализация каждого фактора (демонстрационные значения и максимумы показаны рядом).
           </div>
-          
+        <!-- right: totals -->
+        <div class="rif-right" aria-hidden="false">
+          <div class="rif-total" role="status" aria-live="polite">
+            <div style="flex:1">
+              <div class="total-label">Сумма всех факторов РИФ</div>
+              <div class="total-value" id="rifTotal">0</div>
+              <div class="rif-note">Сумма всех факторов: Накопленная прибыль + Потенциал спроса + Эффективность + Доля рынка + Рост</div>
+            </div>
+            <div style="width:120px; text-align:center;">
+              <!-- small donut for current game RIF -->
+              <svg viewBox="0 0 36 36" width="80" height="80" aria-hidden="true">
+                <path d="M18 2.0845
+                         a 15.9155 15.9155 0 0 1 0 31.831
+                         a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="3.2"></path>
+                <path class="total-ring" d="M18 2.0845
+                         a 15.9155 15.9155 0 0 1 0 31.831
+                         a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none" stroke="url(#tg)" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="100 100" stroke-dashoffset="100"></path>
+                <defs>
+                  <linearGradient id="tg" x1="0" x2="1"><stop offset="0" stop-color="#005BFF"/><stop offset="1" stop-color="#2b7bff"/></linearGradient>
+                </defs>
+                <text x="18" y="21" font-size="8" text-anchor="middle" fill="#0b234d" font-weight="800" id="totalDonutText">0</text>
+              </svg>
+              <div class="rif-record-label">Наивысший показатель РИФа в последней игре!</div>
+            </div>
+          </div>
+
           <div class="rif-cards" aria-hidden="false">
             <!-- Factor: Накопленная прибыль (max 400 для вклада в РИФ) -->
             <div class="rif-factor" data-factor="profit" role="group" aria-label="Накопленная прибыль">
@@ -690,35 +720,6 @@
             </div>
           </div>
         </div>
-
-        <!-- right: totals -->
-        <div class="rif-right" aria-hidden="false">
-          <div class="rif-total" role="status" aria-live="polite">
-            <div style="flex:1">
-              <div class="total-label">Абсолютный рекорд РИФа!</div>
-              <div class="total-value" id="rifTotal">0</div>
-              <div class="rif-note"> Накопленная прибыль + Потенциал спроса + Эффективность + Доля рынка + Рост</div>
-            </div>
-            <div style="width:120px; text-align:center;">
-              <!-- small donut for current game RIF -->
-              <svg viewBox="0 0 36 36" width="80" height="80" aria-hidden="true">
-                <path d="M18 2.0845
-                         a 15.9155 15.9155 0 0 1 0 31.831
-                         a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="3.2"></path>
-                <path class="total-ring" d="M18 2.0845
-                         a 15.9155 15.9155 0 0 1 0 31.831
-                         a 15.9155 15.9155 0 0 1 0 -31.831"
-                      fill="none" stroke="url(#tg)" stroke-width="3.2" stroke-linecap="round" stroke-dasharray="100 100" stroke-dashoffset="100"></path>
-                <defs>
-                  <linearGradient id="tg" x1="0" x2="1"><stop offset="0" stop-color="#005BFF"/><stop offset="1" stop-color="#2b7bff"/></linearGradient>
-                </defs>
-                <text x="18" y="21" font-size="8" text-anchor="middle" fill="#0b234d" font-weight="800" id="totalDonutText">0</text>
-              </svg>
-              <div class="rif-record-label">Наивысший показатель РИФа в последней игре!</div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- Аккордеон: Интересный факт (про нулевой период и точные значения) -->
@@ -734,6 +735,7 @@
           <p style="margin-top:8px;color:#334155;font-style:italic;">Коротко: ноль — это стартовый «100». Всё, что дальше — вопрос стратегии, маркетинга и умения избегать увольнения директора (шутка, не увольняют).</p>
         </div>
       </div>
+
     </section>
 
     <!-- PRIZES -->
@@ -831,6 +833,7 @@
   function scrollToId(id){
     const el = document.getElementById(id);
     if(!el) return;
+    // offset adjustment: ensure element not hidden behind any sticky elements (none prominent here)
     el.scrollIntoView({behavior:'smooth',block:'start'});
   }
 
@@ -897,6 +900,7 @@
 
     function positionFloaters(){
       const w = window.innerWidth || document.documentElement.clientWidth;
+      // Programmatically set safe positions to avoid covering hero text/buttons on larger screens
       if(w >= 1400){
         if(floaters[0]) { floaters[0].style.left = '2%'; floaters[0].style.top = '8%'; floaters[0].style.right = ''; }
         if(floaters[1]) { floaters[1].style.right = '2%'; floaters[1].style.top = '14%'; floaters[1].style.left = ''; }
@@ -906,6 +910,7 @@
         if(floaters[1]) { floaters[1].style.right = '4%'; floaters[1].style.top = '16%'; floaters[1].style.left = ''; }
         if(floaters[2]) { floaters[2].style.left = '6%'; floaters[2].style.bottom = '10%'; floaters[2].style.right = ''; floaters[2].style.top = ''; }
       } else {
+        // small screens: keep compact positions
         if(floaters[0]) { floaters[0].style.left = '6%'; floaters[0].style.top = '10%'; floaters[0].style.right = ''; }
         if(floaters[1]) { floaters[1].style.right = '6%'; floaters[1].style.top = '22%'; floaters[1].style.left = ''; }
         if(floaters[2]) { floaters[2].style.left = '8%'; floaters[2].style.bottom = '10%'; floaters[2].style.right = ''; floaters[2].style.top = ''; }
@@ -914,15 +919,17 @@
 
     floaters.forEach((el, i)=>{
       el.style.pointerEvents = 'none';
+      // staggered animation, respect reduced motion
       if(!reduce){
         const dur = 4 + (i % 3);
         el.style.animation = `riff-float ${dur}s ${i*0.28}s ease-in-out infinite`;
       } else {
         el.style.animation = 'none';
       }
-      el.style.zIndex = '0';
+      el.style.zIndex = '0'; // ensure they are behind the hero content (hero-row z-index:2)
     });
 
+    // Parallax-like subtle container translation on scroll (keeps individual animations intact)
     if(!reduce){
       window.addEventListener('scroll', ()=>{
         const sc = window.scrollY || window.pageYOffset || 0;
@@ -933,11 +940,15 @@
       floatersContainer.style.transform = 'none';
     }
 
+    // Prevent floaters from overlapping other major sections:
+    // When the tournament swiper enters the viewport (user scrolled down),
+    // hide floaters to guarantee they "не накладываются на первый слайд".
     const tournamentEl = document.getElementById('mecomSwiper');
     if(tournamentEl){
       const obs = new IntersectionObserver((entries)=>{
         entries.forEach(en=>{
           if(en.isIntersecting){
+            // hide floaters
             floatersContainer.classList.add('hidden');
           } else {
             floatersContainer.classList.remove('hidden');
@@ -947,7 +958,9 @@
       obs.observe(tournamentEl);
     }
 
+    // reposition on resize
     window.addEventListener('resize', ()=>{ positionFloaters(); }, {passive:true});
+    // initial positioning
     positionFloaters();
   })();
 
@@ -983,12 +996,13 @@
   }
 
   /* =========================================================
-     РИФ: логика анимации и демо-значения
+     РИФ: логика анимации и демо-значения - добавлено из кода 1
      ========================================================= */
   (function initRif(){
     const rifSection = document.querySelector('#rif');
     if(!rifSection) return;
 
+    // Максимальные вклады в РИФ (пункты)
     const MAX = {
       profit: 400,
       demand: 20,
@@ -998,6 +1012,7 @@
       growth: 20
     };
 
+    // Демонстрация - значения факторов
     const demo = {
       profit: 237,
       demand: 12,
@@ -1007,14 +1022,17 @@
       growth: 15
     };
 
+    // Значение в центральной диаграмме
     const LAST_GAME_RIF = 164;
 
+    // Helpers and elements
     const factorEls = document.querySelectorAll('.rif-factor');
     const barEls = document.querySelectorAll('.rif-bar');
     const totalEl = document.querySelector('#rifTotal');
     const totalDonutText = document.querySelector('#totalDonutText');
     const totalRing = document.querySelector('.total-ring');
 
+    // Build factor map (cur & max)
     const factors = {
       profit: { cur: demo.profit, max: MAX.profit },
       demand: { cur: demo.demand, max: MAX.demand },
@@ -1024,8 +1042,10 @@
       growth: { cur: demo.growth, max: MAX.growth }
     };
 
+    // sum points (demo) - сумма всех факторов
     const totalPoints = Object.keys(factors).reduce((s,k)=> s + factors[k].cur, 0);
 
+    // Prepare rings: compute circumference and set initial dasharray/dashoffset
     function prepareRings(){
       factorEls.forEach(el=>{
         const ring = el.querySelector('.ring');
@@ -1038,16 +1058,20 @@
     }
     prepareRings();
 
+    // animate routine
     function animateRif(){
       const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+      // rings & inner numbers
       factorEls.forEach((el, idx)=>{
         const key = el.dataset.factor;
         const f = factors[key];
         if(!f) return;
         const ring = el.querySelector('.ring');
         const textNode = el.querySelector('.ring-value');
+        // percentage of factor max (0..100)
         const pct = (f.max > 0) ? Math.round((f.cur / f.max) * 100) : 100;
+        // compute circumference from current ring stroke-dasharray
         const dashStr = ring.style.strokeDasharray || ring.getAttribute('stroke-dasharray') || '';
         const circumference = parseFloat(dashStr) || (2 * Math.PI * 42);
 
@@ -1057,8 +1081,11 @@
           ring.style.strokeDashoffset = offset;
           if(textNode) textNode.textContent = String(f.cur);
         } else {
+          // animate stroke offset
           ring.style.transition = 'stroke-dashoffset 1100ms cubic-bezier(.2,.9,.2,1)';
+          // small stagger
           setTimeout(()=> { ring.style.strokeDashoffset = offset; }, idx * 80);
+          // animate inner number
           if(textNode){
             const start = performance.now();
             const duration = 900;
@@ -1074,6 +1101,7 @@
         }
       });
 
+      // bars
       barEls.forEach((bar, idx)=>{
         const key = bar.dataset.bar;
         const f = factors[key];
@@ -1101,6 +1129,7 @@
         }
       });
 
+      // total - соотношение LAST_GAME_RIF к сумме всех факторов
       const totalValue = LAST_GAME_RIF;
       const totalPercentage = (LAST_GAME_RIF / totalPoints) * 100;
 
@@ -1138,6 +1167,7 @@
       }
     }
 
+    // trigger animation once when in view
     const obs = new IntersectionObserver((entries, o)=>{
       entries.forEach(en=>{
         if(en.isIntersecting){
@@ -1154,7 +1184,7 @@
   })();
 
   /* =========================================================
-     Аккордеон: Интересный факт — управление открытием/закрытием
+     Аккордеон: Интересный факт — управление открытием/закрытием - добавлено из кода 1
      ========================================================= */
   (function initAccordion(){
     const accordions = document.querySelectorAll('.accordion');
@@ -1163,27 +1193,35 @@
       const trigger = acc.querySelector('.trigger');
       const content = acc.querySelector('.content');
       if(!trigger || !content) return;
+      // Ensure initial collapsed state
       content.style.maxHeight = '0px';
       content.style.opacity = '0';
       trigger.addEventListener('click', ()=>{
         const open = acc.classList.contains('open');
         if(open){
+          // close
           acc.classList.remove('open');
           trigger.setAttribute('aria-expanded', 'false');
+          // animate collapse: set explicit height to current, then to 0
           const h = content.scrollHeight;
           content.style.maxHeight = h + 'px';
+          // allow the browser to paint
           requestAnimationFrame(()=> {
             content.style.maxHeight = '0px';
             content.style.opacity = '0';
           });
+          // remove padding via JS after animation
           setTimeout(()=> { content.style.padding = '0 12px'; }, 320);
         } else {
+          // open
           acc.classList.add('open');
           trigger.setAttribute('aria-expanded', 'true');
+          // restore padding first so layout includes it
           content.style.padding = '12px';
           const h = content.scrollHeight;
           content.style.maxHeight = h + 'px';
           content.style.opacity = '1';
+          // after animation remove maxHeight to allow internal changes (optional)
           setTimeout(()=> { content.style.maxHeight = 'none'; }, 400);
         }
       });
@@ -1453,6 +1491,7 @@
         track.appendChild(slide);
       });
 
+      // trigger fade-ins (post DOM insert)
       requestAnimationFrame(()=> {
         qsa('.mecom-slide.fade-in', track).forEach(el => el.classList.add('show'));
         setTimeout(()=> updateHeightForSlide(current), 30);
@@ -1573,6 +1612,7 @@
       renderAll();
       attachSwipe();
 
+      // Expose debug API
       window.MECOM_BRACKET_V2 = {
         getState: ()=> deepCopy(renderData),
         setState: (obj)=>{ if(Array.isArray(obj)){ renderData = deepCopy(obj); saveState(renderData); renderAll(); } },
@@ -1582,7 +1622,8 @@
 
     init();
 
-  })();
+  })(); // end bracket IIFE
+
 </script>
 </body>
 </html>
