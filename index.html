@@ -8,13 +8,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
   /*
-    Полная, улучшенная и единая версия.
-    Изменения/цели:
-      - max-width установлен в 1200px как ты просил.
-      - Поведение floaters исправлено: находятся позади контента, не накладываются на текст.
-      - Доп. медиазапросы для "крупных" экранов.
-      - Поддержка prefers-reduced-motion.
-      - Сохранена структура HTML/JS — логика сетки оставлена.
+    Исправления:
+    1. Унифицированная плавная анимация появления всех секций
+    2. Единая цветовая палитра - все цвета берутся из :root
+    3. Убрана подпись в футере
   */
 
   :root{
@@ -26,10 +23,15 @@
     --card:#ffffff;
     --glass: rgba(255,255,255,0.8);
     --radius:14px;
-    --maxwidth:1200px; /* изменение: 1200px рамка сайта */
+    --maxwidth:1200px;
     --site-padding:18px;
     --base-font-size:15px;
     --ui-radius:12px;
+    
+    /* Призовые цвета теперь отсюда */
+    --prize-highlight-bg: linear-gradient(90deg,#fff5cc,#ffe680);
+    --prize-highlight-color: #533f00;
+    --prize-section-bg: linear-gradient(90deg,var(--blue),var(--blue-2));
   }
 
   /* Base sizing & reset */
@@ -105,7 +107,21 @@
   @keyframes riff-float {0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(8deg)}100%{transform:translateY(0) rotate(0)}}
 
   /* ---------- SECTIONS ---------- */
-  section{margin-top:18px;padding:16px;border-radius:14px;background:var(--card);box-shadow:0 8px 26px rgba(12,24,56,0.04)}
+  section{
+    margin-top:18px;
+    padding:16px;
+    border-radius:14px;
+    background:var(--card);
+    box-shadow:0 8px 26px rgba(12,24,56,0.04);
+    /* Единая анимация появления */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  section.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
   h2{margin:0 0 8px 0;font-size:16px;color:var(--blue)}
   p.muted{color:var(--muted);font-size:13px;margin:0}
   .cols{display:grid;grid-template-columns:1fr;gap:12px}
@@ -139,7 +155,7 @@
 
   /* ---------- PRIZES SECTION ---------- */
   .prizes-section{
-    background: linear-gradient(90deg,var(--blue),var(--blue-2));
+    background: var(--prize-section-bg); /* Теперь из переменной */
     color: #fff;
     border-radius:12px;
     padding:12px;
@@ -157,7 +173,11 @@
   }
   .prizes-table{display:flex;flex-direction:column;gap:10px;margin-top:6px}
   .prize-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.06);font-weight:700;animation:prizeRowIn 420ms ease}
-  .prize-row.highlight{background:linear-gradient(90deg,#fff5cc,#ffe680);color:#533f00;box-shadow:0 10px 30px rgba(255,193,7,0.06)}
+  .prize-row.highlight{
+    background: var(--prize-highlight-bg); /* Теперь из переменной */
+    color: var(--prize-highlight-color); /* Теперь из переменной */
+    box-shadow:0 10px 30px rgba(255,193,7,0.06)
+  }
   @keyframes prizesFadeIn { from{opacity:0;transform:translateY(-6px)} to{opacity:1;transform:none} }
   @keyframes prizeRowIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
 
@@ -176,11 +196,11 @@
   a[href^="https://t.me"]:hover{ text-decoration:underline }
 
   /* ---------- FOOTER ---------- */
-  footer{margin-top:14px;text-align:center;color:var(--muted);font-size:13px;padding:14px}
+  /* Убрана подпись - оставляем только отступ */
+  footer{margin-top:14px;padding:14px;opacity:0} /* Скрываем но сохраняем отступ */
 
   /* ---------- Animations ---------- */
-  .fade-in{opacity:0;transform:translateY(12px);transition:all 560ms cubic-bezier(.2,.9,.2,1)}
-  .fade-in.show{opacity:1;transform:none}
+  /* Убраны старые fade-in стили, теперь используется единый подход в section */
   .typing{display:inline-block;white-space:nowrap;overflow:hidden;border-right:2px solid rgba(0,0,0,0.12)}
   @keyframes pulse-blue{0%{transform:scale(1)}50%{transform:scale(1.03)}100%{transform:scale(1)}}
   .pulse{animation:pulse-blue 2400ms infinite}
@@ -192,7 +212,13 @@
   /* =========================
      РИФ (styling) - добавлено из кода 1
      ========================= */
-  .rif-section { padding: 14px; border-radius:12px; background: linear-gradient(180deg,#fff,#fbfdff); border:1px solid rgba(10,40,120,0.04); box-shadow:0 8px 26px rgba(12,24,56,0.04); }
+  .rif-section { 
+    padding: 14px; 
+    border-radius:12px; 
+    background: linear-gradient(180deg,#fff,#fbfdff); 
+    border:1px solid rgba(10,40,120,0.04); 
+    box-shadow:0 8px 26px rgba(12,24,56,0.04); 
+  }
   .rif-grid { display:grid; grid-template-columns: 1fr; gap:12px; align-items:stretch; }
   @media(min-width:720px){ .rif-grid { grid-template-columns: 1fr 320px; } }
 
@@ -274,7 +300,17 @@
   /* ===========================================================
      MECOM BRACKET — улучшенная версия стилей
      =========================================================== */
-  .mecom-bracket{--me-blue:#005BFF;--me-blue-2:#2b7bff;--me-soft:#A7D8FF;background: linear-gradient(90deg,rgba(7,48,159,0.03),rgba(0,91,255,0.02));border-radius:12px;padding:10px;box-sizing:border-box;color:#0b1220;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+  .mecom-bracket{
+    --me-blue:#005BFF;
+    --me-blue-2:#2b7bff;
+    --me-soft:#A7D8FF;
+    background: linear-gradient(90deg,rgba(7,48,159,0.03),rgba(0,91,255,0.02));
+    border-radius:12px;
+    padding:10px;
+    box-sizing:border-box;
+    color:#0b1220;
+    font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  }
   .mecom-rounds-nav{display:flex;gap:6px;position:sticky;top:8px;z-index:5;margin-bottom:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
   .mecom-rounds-nav::-webkit-scrollbar{display:none;}
   .mecom-rounds-nav .mecom-chip{background:rgba(0,91,255,0.06);color:var(--me-blue);padding:8px 10px;border-radius:999px;font-weight:700;cursor:pointer;border:0;font-size:12px;white-space:nowrap;}
@@ -282,7 +318,21 @@
 
   .mecom-swiper{position:relative;overflow:hidden;border-radius:10px;background:linear-gradient(180deg,#fff,#f7fbff);border:1px solid rgba(10,30,80,0.04);transition:height .26s ease;}
   .mecom-swiper-track{display:flex;width:100%;will-change:transform;transform:translate3d(0,0,0);transition:transform .26s ease;touch-action:pan-y;align-items:flex-start;}
-  .mecom-slide{min-width:100%;padding:10px;align-self:flex-start;display:flex;flex-direction:column;}
+  .mecom-slide{
+    min-width:100%;
+    padding:10px;
+    align-self:flex-start;
+    display:flex;
+    flex-direction:column;
+    /* Единая анимация для слайдов */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+  }
+  .mecom-slide.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
   .mecom-round-title{font-weight:800;margin-bottom:8px;color:#0b234d;display:flex;justify-content:space-between;align-items:center}
 
   .pack{border-radius:12px;padding:10px;background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid rgba(10,40,120,0.04);margin-bottom:12px}
@@ -395,8 +445,16 @@
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .logo, .riff, .btn-primary, .rif-factor svg, .rif-factor .svg-wrap, .rif-bar .bar-fill { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition: none !important; }
-    .fade-in{ transition:none; transform:none; opacity:1; }
+    .logo, .riff, .btn-primary, .rif-factor svg, .rif-factor .svg-wrap, .rif-bar .bar-fill { 
+      animation-duration: 1ms !important; 
+      animation-iteration-count: 1 !important; 
+      transition: none !important; 
+    }
+    section, .mecom-slide { 
+      transition: none !important; 
+      transform: none !important; 
+      opacity: 1 !important; 
+    }
   }
 
   /* very large screens keep content centered */
@@ -440,7 +498,7 @@
     </header>
 
     <!-- ABOUT / WHAT IS MEKOM -->
-    <section id="about" class="fade-in" aria-labelledby="aboutTitle">
+    <section id="about" aria-labelledby="aboutTitle">
       <h2 id="aboutTitle">Что такое МЭКОМ?</h2>
       <p class="muted">МЭКОМ — внутренняя школьная экономическая игра: команды из разных классов соревнуются в сериях раундов, принимают бизнес-решения и «зарабатывают» наивысший <strong>РИФ — <i>рейтинговый индекс фирмы</i></strong>. Чем лучше стратегия и командная игра, тем выше шанс пройти в финал.</p>
       <div style="margin-top:12px" class="cols">
@@ -462,7 +520,7 @@
           </div>
         </div>
 
-        <aside class="bracket-info fade-in" style="padding:8px">
+        <aside class="bracket-info" style="padding:8px">
           <button
             type="button"
             class="outline-chip"
@@ -482,7 +540,7 @@
     </section>
 
     <!-- TO WIN -->
-    <section id="how" class="fade-in" aria-labelledby="howTitle">
+    <section id="how" aria-labelledby="howTitle">
       <h2 id="howTitle">Как выиграть ВСЁ</h2>
       <div class="steps" style="margin-top:12px">
         <div class="card">
@@ -524,7 +582,7 @@
     </section>
 
     <!-- HOW TO PLAY (decisions) -->
-    <section id="how-play" class="fade-in" aria-labelledby="howPlayTitle">
+    <section id="how-play" aria-labelledby="howPlayTitle">
       <h2 id="howPlayTitle">Как играть — суть и решения</h2>
       <p class="muted">В каждом периоде вы принимаете 5 ключевых решений, которые формируют результаты фирмы и влияют на РИФ.</p>
 
@@ -572,7 +630,7 @@
     </section>
 
     <!-- СЕКЦИЯ РИФ - добавлено из кода 1 -->
-    <section id="rif" class="fade-in rif-section" aria-labelledby="rif-title" style="margin-top:16px;">
+    <section id="rif" class="rif-section" aria-labelledby="rif-title" style="margin-top:16px;">
       <h2 id="rif-title">Что такое РИФ?</h2>
       <div class="rif-grid" style="margin-top:10px;">
         <!-- left: cards -->
@@ -739,7 +797,7 @@
     </section>
 
     <!-- PRIZES -->
-    <section id="prizes" class="prizes-section fade-in" aria-label="Призовые">
+    <section id="prizes" class="prizes-section" aria-label="Призовые">
       <div class="section-title">🏆 Призовые на Чемпионат</div>
       <div class="prizes-table" role="list" aria-hidden="false">
         <div class="prize-row highlight" role="listitem">
@@ -770,7 +828,7 @@
     </section>
 
     <!-- TOURNAMENT -->
-    <section id="tournament" class="fade-in" aria-label="Турнирная сетка">
+    <section id="tournament" aria-label="Турнирная сетка">
       <h2>Турнирная сетка — этапы</h2>
 
       <div id="mecom-bracket" class="mecom-bracket" data-storage-key="mecom_bracket_state_v4" data-auto-seed="true">
@@ -785,7 +843,7 @@
     </section>
 
     <!-- WHY MEKOM -->
-    <section id="why" class="fade-in">
+    <section id="why">
       <h2>Почему мы — МЕКОМ?</h2>
       <div class="why" style="margin-top:8px">
         <div class="badge">Легенда</div>
@@ -796,7 +854,7 @@
     </section>
 
     <!-- REGISTRATION -->
-    <section id="reg" class="fade-in">
+    <section id="reg">
       <h2>Как принять участие</h2>
       <p class="muted">Соберите команду, зарегистрируйтесь и готовьтесь к раундам. Заполнив форму, вы спустя какое-то время получите подтверждение/отказ в регистрации. В случае подтверждения регистрации команды, название вашей команды отобразиться на сайте в таблице, а именно в разделе отборочные! </p>
 
@@ -812,7 +870,7 @@
     </section>
 
     <!-- CONTACTS -->
-    <section class="fade-in">
+    <section>
       <h2>Контакты</h2>
       <p class="muted">
         Телеграм-канал: <a href="https://t.me/mekom_info" target="_blank" rel="noopener">@mekom_info</a><br/>
@@ -820,9 +878,8 @@
       </p>
     </section>
 
-    <footer class="fade-in" role="contentinfo">
-      <div style="font-weight:700">Корпорация МЕКОМ</div>
-      <div class="muted" style="margin-top:6px">Сделано в школе, но на мировом уровне, с хитростью и дерзостью.</div>
+    <footer role="contentinfo">
+      <!-- Подпись убрана по требованию -->
     </footer>
   </div>
 
@@ -837,10 +894,10 @@
     el.scrollIntoView({behavior:'smooth',block:'start'});
   }
 
-  // ----- fade-in on scroll -----
+  // ----- УНИФИЦИРОВАННАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ -----
   (function initFadeIn(){
-    const fades = document.querySelectorAll('.fade-in');
-    if(!fades) return;
+    const sections = document.querySelectorAll('section');
+    if(!sections) return;
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -848,8 +905,8 @@
           io.unobserve(e.target);
         }
       });
-    }, {threshold: 0.12});
-    fades.forEach(f=>io.observe(f));
+    }, {threshold: 0.10, rootMargin: '0px 0px -50px 0px'});
+    sections.forEach(s=>io.observe(s));
   })();
 
   // ----- format number helper -----
@@ -1396,7 +1453,7 @@
       track.innerHTML = '';
       renderData.forEach((round, rIndex)=>{
         const slide = document.createElement('div');
-        slide.className = 'mecom-slide fade-in';
+        slide.className = 'mecom-slide';
 
         const title = document.createElement('div');
         title.className = 'mecom-round-title';
@@ -1493,7 +1550,7 @@
 
       // trigger fade-ins (post DOM insert)
       requestAnimationFrame(()=> {
-        qsa('.mecom-slide.fade-in', track).forEach(el => el.classList.add('show'));
+        qsa('.mecom-slide', track).forEach(el => el.classList.add('show'));
         setTimeout(()=> updateHeightForSlide(current), 30);
       });
     }
@@ -1626,4 +1683,5 @@
 
 </script>
 </body>
+</html>
 
