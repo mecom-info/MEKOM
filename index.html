@@ -534,6 +534,182 @@
     display: flex;
     flex-direction: column;
   }
+.captcha-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 10001;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .captcha-box {
+      background: #1a1a1a;
+      color: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      border: 2px solid #ff4444;
+  }
+
+  .color-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 20px 0;
+  }
+
+  .color-option {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
+  }
+
+  .color-option:hover {
+      transform: scale(1.1);
+  }
+
+  .progress-bar {
+      width: 100%;
+      height: 20px;
+      background: #333;
+      border-radius: 10px;
+      margin: 20px 0;
+      overflow: hidden;
+  }
+
+  .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+      width: 0%;
+      transition: width 1s linear;
+  }
+
+  .hint {
+      font-size: 12px;
+      color: #888;
+      margin-top: 10px;
+  }
+
+  #wait-continue {
+      background: #555;
+      color: #999;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 8px;
+      cursor: not-allowed;
+      font-size: 16px;
+      margin-top: 20px;
+  }
+
+  #wait-continue:enabled {
+      background: #4ecdc4;
+      color: white;
+      cursor: pointer;
+  }
+
+  .slider-container {
+      position: relative;
+      height: 40px;
+      margin: 20px 0;
+  }
+
+  .slider-track {
+      width: 100%;
+      height: 6px;
+      background: #333;
+      border-radius: 3px;
+      position: relative;
+      margin-top: 20px;
+  }
+
+  .slider-thumb {
+      width: 20px;
+      height: 20px;
+      background: #FF1493;
+      border-radius: 50%;
+      position: absolute;
+      top: -7px;
+      left: 0;
+      cursor: grab;
+  }
+
+  .target-line {
+      width: 2px;
+      height: 30px;
+      background: #4ecdc4;
+      position: absolute;
+      top: -12px;
+  }
+
+  .slider-value {
+      margin: 10px 0;
+      font-size: 14px;
+  }
+
+  #slider-submit {
+      background: #FF1493;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+  }
+
+  /* Стили для секретного пикселя */
+  .secret-pixel {
+      position: fixed;
+      width: 1px;
+      height: 1px;
+      background: #000;
+      cursor: pointer;
+      z-index: 10000;
+      transition: all 0.3s ease;
+      pointer-events: auto;
+  }
+
+  .secret-pixel:hover {
+      transform: scale(8);
+      background: #FF1493;
+      box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+  }
+
+  .pixel-tooltip {
+      position: absolute;
+      font-size: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      white-space: nowrap;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 2px 6px;
+      border-radius: 3px;
+  }
+
+  .secret-pixel:hover .pixel-tooltip {
+      opacity: 1;
+  }
+
+  @keyframes pixelPop {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(12); opacity: 0.5; }
+      100% { transform: scale(25); opacity: 0; }
+  }
+
+  .pixel-pop {
+      animation: pixelPop 0.6s forwards;
+  }
+
 
   .secret-mission-alert h3 {
     color: #FF1493;
@@ -2297,7 +2473,285 @@ overlay.className = 'overlay';
       
       pixel.style.left = posX + 'px';
       pixel.style.top = posY + 'px';
+
+
+ // 🔥 АДСКАЯ КАПЧА - ОБРАБОТЧИК КЛИКА
+      pixel.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          let captchaLevel = 1;
+          let totalTime = 0;
+          
+          function showTortureCaptcha() {
+              const captchaType = Math.floor(Math.random() * 6);
+              totalTime += 15;
+              
+              switch(captchaType) {
+                  case 0:
+                      showMathCaptcha();
+                      break;
+                  case 1:
+                      showWaitCaptcha();
+                      break;
+                  case 2:
+                      showColorCaptcha();
+                      break;
+                  case 3:
+                      showMemoryCaptcha();
+                      break;
+                  case 4:
+                      showTypingCaptcha();
+                      break;
+                  case 5:
+                      showSliderHell();
+                      break;
+              }
+          }
+          
+          function showMathCaptcha() {
+              const operations = ['+', '-', '*', '/', '%', '**'];
+              const op = operations[Math.floor(Math.random() * operations.length)];
+              let num1 = Math.floor(Math.random() * 1000) + 1;
+              let num2 = Math.floor(Math.random() * 100) + 1;
+              let answer;
+              
+              switch(op) {
+                  case '+': answer = num1 + num2; break;
+                  case '-': answer = num1 - num2; break;
+                  case '*': answer = num1 * num2; break;
+                  case '/': 
+                      answer = (num1 / num2).toFixed(2);
+                      break;
+                  case '%': answer = num1 % num2; break;
+                  case '**': answer = Math.pow(num1, 2); break;
+              }
+              
+              const userAnswer = prompt(`🎯 Уровень ${captchaLevel}/5\nРешите: ${num1} ${op} ${num2} = ?\n(Уже потрачено: ${totalTime} секунд)`);
+              
+              if (parseFloat(userAnswer) === parseFloat(answer)) {
+                  captchaLevel++;
+                  if (captchaLevel <= 5) {
+                      setTimeout(showTortureCaptcha, 1000);
+                  } else {
+                      showSecretMission();
+                  }
+              } else {
+                  alert(`❌ Ошибка! Начинаем заново...\nПравильный ответ: ${answer}`);
+                  captchaLevel = 1;
+                  showTortureCaptcha();
+              }
+          }
+          
+          function showWaitCaptcha() {
+              const waitTime = Math.floor(Math.random() * 30) + 10;
+              const startTime = Date.now();
+              
+              const waitHTML = `
+                  <div class="captcha-overlay">
+                      <div class="captcha-box">
+                          <h3>⏳ Уровень ${captchaLevel}/5 - Ожидание</h3>
+                          <div class="wait-message">
+                              <p>Подождите <span id="wait-time">${waitTime}</span> секунд</p>
+                              <p>Не закрывайте это окно!</p>
+                              <div class="progress-bar">
+                                  <div class="progress-fill" id="progress-fill"></div>
+                              </div>
+                              <p id="time-warning" style="color: red; display: none;">⚠️ СЛИШКОМ РАНЬШЕ! ЖДИТЕ!</p>
+                          </div>
+                          <button id="wait-continue" disabled>Продолжить через ${waitTime}с</button>
+                      </div>
+                  </div>
+              `;
+              
+              document.body.insertAdjacentHTML('beforeend', waitHTML);
+              
+              const continueBtn = document.getElementById('wait-continue');
+              const timeDisplay = document.getElementById('wait-time');
+              const progressFill = document.getElementById('progress-fill');
+              const timeWarning = document.getElementById('time-warning');
+              
+              let timeLeft = waitTime;
+              const interval = setInterval(() => {
+                  timeLeft--;
+                  timeDisplay.textContent = timeLeft;
+                  progressFill.style.width = ((waitTime - timeLeft) / waitTime) * 100 + '%';
+                  
+                  if (timeLeft <= 0) {
+                      clearInterval(interval);
+                      continueBtn.disabled = false;
+                      continueBtn.textContent = 'Продолжить';
+                  }
+              }, 1000);
+              
+              continueBtn.addEventListener('click', function() {
+                  const elapsed = (Date.now() - startTime) / 1000;
+                  if (elapsed < waitTime) {
+                      timeWarning.style.display = 'block';
+                      return;
+                  }
+                  
+                  clearInterval(interval);
+                  document.querySelector('.captcha-overlay').remove();
+                  captchaLevel++;
+                  setTimeout(showTortureCaptcha, 500);
+              });
+          }
+          
+          function showColorCaptcha() {
+              const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'];
+              const targetColor = colors[Math.floor(Math.random() * colors.length)];
+              
+              const colorHTML = `
+                  <div class="captcha-overlay">
+                      <div class="captcha-box">
+                          <h3>🎨 Уровень ${captchaLevel}/5 - Цвета</h3>
+                          <p>Выберите цвет: <strong style="color: ${targetColor}">${targetColor}</strong></p>
+                          <div class="color-grid">
+                              ${colors.map(color => `
+                                  <div class="color-option" style="background: ${color}" data-color="${color}"></div>
+                              `).join('')}
+                          </div>
+                          <p class="hint">Подсказка: смотрите на HEX код выше</p>
+                      </div>
+                  </div>
+              `;
+              
+              document.body.insertAdjacentHTML('beforeend', colorHTML);
+              
+              document.querySelectorAll('.color-option').forEach(option => {
+                  option.addEventListener('click', function() {
+                      if (this.dataset.color === targetColor) {
+                          document.querySelector('.captcha-overlay').remove();
+                          captchaLevel++;
+                          setTimeout(showTortureCaptcha, 500);
+                      } else {
+                          alert('❌ Неверный цвет! Начинаем заново...');
+                          document.querySelector('.captcha-overlay').remove();
+                          captchaLevel = 1;
+                          showTortureCaptcha();
+                      }
+                  });
+              });
+          }
+          
+          function showMemoryCaptcha() {
+              const symbols = ['♠', '♣', '♥', '♦', '★', '☀', '♫', '☂'];
+              const sequence = [];
+              for (let i = 0; i < 8; i++) {
+                  sequence.push(symbols[Math.floor(Math.random() * symbols.length)]);
+              }
+              
+              alert(`🧠 Уровень ${captchaLevel}/5\nЗапомните последовательность:\n${sequence.join(' ')}\n\nУ вас будет 5 секунд...`);
+              
+              setTimeout(() => {
+                  const userSequence = prompt('Воспроизведите последовательность через пробел:');
+                  if (userSequence === sequence.join(' ')) {
+                      captchaLevel++;
+                      setTimeout(showTortureCaptcha, 500);
+                  } else {
+                      alert(`❌ Неверно! Правильно: ${sequence.join(' ')}`);
+                      captchaLevel = 1;
+                      showTortureCaptcha();
+                  }
+              }, 5000);
+          }
+          
+          function showTypingCaptcha() {
+              const texts = [
+                  "суперкалифрагилистикэкспиалидошиус",
+                  "антидизестаблишментгерианизм",
+                  "трансцендентальнофилософствующий",
+                  "электрокардиографический",
+                  "высокопревосходительствоснование"
+              ];
+              
+              const targetText = texts[Math.floor(Math.random() * texts.length)];
+              const userText = prompt(`⌨️ Уровень ${captchaLevel}/5\nНаберите без ошибок:\n"${targetText}"`);
+              
+              if (userText === targetText) {
+                  captchaLevel++;
+                  setTimeout(showTortureCaptcha, 500);
+              } else {
+                  alert('❌ Опечатка! Начинаем заново...');
+                  captchaLevel = 1;
+                  showTortureCaptcha();
+              }
+          }
+          
+          function showSliderHell() {
+              const targetPosition = Math.floor(Math.random() * 80) + 10;
+              
+              const sliderHTML = `
+                  <div class="captcha-overlay">
+                      <div class="captcha-box">
+                          <h3>🎯 Уровень ${captchaLevel}/5 - Точность</h3>
+                          <p>Установите слайдер на ${targetPosition}%</p>
+                          <div class="slider-container">
+                              <div class="slider-track">
+                                  <div class="slider-thumb" id="slider-thumb"></div>
+                              </div>
+                              <div class="target-line" style="left: ${targetPosition}%"></div>
+                          </div>
+                          <div class="slider-value">Текущее значение: <span id="current-value">0</span>%</div>
+                          <button id="slider-submit">Проверить</button>
+                      </div>
+                  </div>
+              `;
+              
+              document.body.insertAdjacentHTML('beforeend', sliderHTML);
+              
+              const sliderThumb = document.getElementById('slider-thumb');
+              const currentValue = document.getElementById('current-value');
+              let thumbPosition = 0;
+              
+              function updateSlider(value) {
+                  thumbPosition = value;
+                  sliderThumb.style.left = value + '%';
+                  currentValue.textContent = Math.round(value);
+              }
+              
+              sliderThumb.addEventListener('mousedown', function(e) {
+                  e.preventDefault();
+                  document.addEventListener('mousemove', onMouseMove);
+                  document.addEventListener('mouseup', onMouseUp);
+              });
+              
+              function onMouseMove(e) {
+                  const track = document.querySelector('.slider-track');
+                  const trackRect = track.getBoundingClientRect();
+                  let newPosition = ((e.clientX - trackRect.left) / trackRect.width) * 100;
+                  newPosition = Math.max(0, Math.min(100, newPosition));
+                  updateSlider(newPosition);
+              }
+              
+              function onMouseUp() {
+                  document.removeEventListener('mousemove', onMouseMove);
+                  document.removeEventListener('mouseup', onMouseUp);
+              }
+              
+              document.getElementById('slider-submit').addEventListener('click', function() {
+                  if (Math.abs(thumbPosition - targetPosition) < 2) {
+                      document.querySelector('.captcha-overlay').remove();
+                      captchaLevel++;
+                      setTimeout(showTortureCaptcha, 500);
+                  } else {
+                      alert(`❌ Промах! Нужно: ${targetPosition}%, у вас: ${Math.round(thumbPosition)}%`);
+                      document.querySelector('.captcha-overlay').remove();
+                      captchaLevel = 1;
+                      showTortureCaptcha();
+                  }
+              });
+          }
+          
+          // НАЧИНАЕМ АД!
+          showTortureCaptcha();
+      });
       
+      // Добавляем на страницу
+      document.body.appendChild(pixel);
+  }
+     
       // Обработчик клика
       pixel.addEventListener('click', function(e) {
           e.preventDefault();
@@ -2322,7 +2776,7 @@ overlay.className = 'overlay';
           overlay.appendChild(mekomBackground);
           
           // Текст для копирования БЕЗ смайлика в конце
-          const copyText = "«Я заметил(а) тот самый странный сбой! Мои 25к баллов готовы?»";
+          const copyText = "«Я заметил(а) тот самый странный сбой! Мои 25к баллов очков отрицательной репутации готовы? как низко я пал…»";
           
           // Создаем красивое сообщение
           const alertBox = document.createElement('div');
@@ -2351,7 +2805,7 @@ overlay.className = 'overlay';
                       <p>Мы срочно проверим ваши полномочия и зачислим приз. Вы — первый, кто сумел разгадать нашу маленькую хитрость!</p>
                       
                       <div class="prize-note">
-                          «Данная плюшка будет выдана самому первому пользователю отправившему данное сообщение в чат!»
+                          «Данная плюшка будет выдана самому первому пользователю отправившему данное сообщение в чат! Спойлер, её нашли еще вчера в поточке»
                       </div>
                   </div>
                   
@@ -2453,3 +2907,4 @@ overlay.className = 'overlay';
 </script>
 
 </html>
+
