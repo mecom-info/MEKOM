@@ -423,3 +423,13 @@
   background: #cdeffa;
   box-shadow: inset 0 0 0 2px #3fb6d8;
 }
+
+/* Сезон 2026/27: команды, выбывшие по ходу игры, — красные. */
+[data-bracket-root] .mc25-team.mc25-out {
+  background: #fbd3d3;
+  box-shadow: inset 0 0 0 2px #e05a5a;
+}
+[data-bracket-root] .mc25-tag-out {
+  background: #e05a5a;
+  color: #fff;
+}

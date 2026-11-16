@@ -222,6 +222,18 @@
               "name": "Воскресные Бродяги",
               "grade": "7–8",
               "branch": "Север"
+            },
+            {
+              "name": "Кто пчёлок уважает",
+              "grade": "7",
+              "branch": "Север",
+              "out": true
+            },
+            {
+              "name": "Газява Вась",
+              "grade": "8",
+              "branch": "Север",
+              "out": true
             }
           ],
           "winnerIndex": [
@@ -297,6 +309,12 @@
               "name": "Ирмогаги",
               "grade": "9",
               "branch": "Юг"
+            },
+            {
+              "name": "Я просто бок",
+              "grade": "9",
+              "branch": "Юг",
+              "out": true
             }
           ],
           "winnerIndex": [

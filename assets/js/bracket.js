@@ -32,10 +32,12 @@
       round.winnerchamp.pack === pIndex && round.winnerchamp.index === tIndex;
     if (isChampion) t.classList.add("mc25-champion");
     else if (isWinner) t.classList.add("mc25-winner");
+    else if (team.out) t.classList.add("mc25-out");
 
     var left = el("div", "mc25-team-left");
     left.appendChild(el("span", "mc25-tag mc25-tag-grade", team.grade + (/[–-]/.test(String(team.grade)) ? " классы" : " класс")));
     left.appendChild(el("span", "mc25-tag " + branchTagClass(team.branch), team.branch));
+    if (team.out) left.appendChild(el("span", "mc25-tag mc25-tag-out", "выбыла"));
     t.appendChild(left);
     t.appendChild(el("div", "mc25-team-name", team.name));
     return t;
