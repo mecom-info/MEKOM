@@ -6,7 +6,7 @@
 (function () {
   "use strict";
 
-  var DATA_VERSION = "20261115a";
+  var DATA_VERSION = "20261116a";
   var SWIPE_RATIO = 0.18;   // доля ширины для переключения
   var FLICK_SPEED = 0.6;    // px/мс
   var LOCK_PX = 8;          // порог определения оси жеста
@@ -34,7 +34,7 @@
     else if (isWinner) t.classList.add("mc25-winner");
 
     var left = el("div", "mc25-team-left");
-    left.appendChild(el("span", "mc25-tag mc25-tag-grade", team.grade + " класс"));
+    left.appendChild(el("span", "mc25-tag mc25-tag-grade", team.grade + (/[–-]/.test(String(team.grade)) ? " классы" : " класс")));
     left.appendChild(el("span", "mc25-tag " + branchTagClass(team.branch), team.branch));
     t.appendChild(left);
     t.appendChild(el("div", "mc25-team-name", team.name));
