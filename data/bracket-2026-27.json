@@ -9,47 +9,47 @@
           "teams": [
             {
               "name": "Аэробус",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
               "name": "Koshkas",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Юг"
             },
             {
               "name": "Телепузики",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
               "name": "Strategy",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
               "name": "Baldi",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Юг"
             },
             {
               "name": "buymeraf",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Юг"
             },
             {
               "name": "Гусь",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
               "name": "КРЕНДЕЛЬ",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
               "name": "Аскарида",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
@@ -59,17 +59,17 @@
             },
             {
               "name": "Тамам",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Юг"
             },
             {
               "name": "Brain Wave",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
               "name": "Хрумка и газява",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Юг"
             }
           ],
@@ -90,17 +90,17 @@
           "teams": [
             {
               "name": "Столешница",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Север"
             },
             {
               "name": "Острова",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Север"
             },
             {
               "name": "Витающие в облаках",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Север"
             },
             {
@@ -110,7 +110,7 @@
             },
             {
               "name": "Момыри",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
@@ -135,7 +135,7 @@
             },
             {
               "name": "БухШиша",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
@@ -145,22 +145,22 @@
             },
             {
               "name": "МММ",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
               "name": "Физикмастерс",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
               "name": "ВВС пчёлки",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
               "name": "Лопер-Хромова",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
@@ -195,7 +195,7 @@
             },
             {
               "name": "Жен Совет",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Север"
             },
             {
@@ -205,17 +205,17 @@
             },
             {
               "name": "Верите или не верите",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Север"
             },
             {
               "name": "Угрик",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
               "name": "Дезоксирибонукленовая кислота",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
@@ -250,52 +250,52 @@
           "teams": [
             {
               "name": "SAMO",
-              "grade": "9–11",
+              "grade": "11",
               "branch": "Юг"
             },
             {
               "name": "Времена года",
-              "grade": "9–11",
+              "grade": "9",
               "branch": "Юг"
             },
             {
               "name": "Express",
-              "grade": "9–11",
+              "grade": "11",
               "branch": "Юг"
             },
             {
               "name": "СПЛ",
-              "grade": "9–11",
+              "grade": "11",
               "branch": "Юг"
             },
             {
               "name": "ИдеиЛуиБлана",
-              "grade": "9–11",
+              "grade": "9",
               "branch": "Юг"
             },
             {
               "name": "МММ",
-              "grade": "9–11",
+              "grade": "10",
               "branch": "Юг"
             },
             {
               "name": "Печеньки",
-              "grade": "9–11",
+              "grade": "9",
               "branch": "Юг"
             },
             {
               "name": "SSS",
-              "grade": "9–11",
+              "grade": "10",
               "branch": "Юг"
             },
             {
               "name": "Грибочек",
-              "grade": "9–11",
+              "grade": "9",
               "branch": "Юг"
             },
             {
               "name": "Ирмогаги",
-              "grade": "9–11",
+              "grade": "9",
               "branch": "Юг"
             }
           ],
@@ -313,12 +313,12 @@
           "teams": [
             {
               "name": "RnB Club",
-              "grade": "9–11",
+              "grade": "10",
               "branch": "Север"
             },
             {
               "name": "Luka Magic",
-              "grade": "9–11",
+              "grade": "11",
               "branch": "Север"
             },
             {
@@ -333,7 +333,7 @@
             },
             {
               "name": "Shishkin House",
-              "grade": "9–11",
+              "grade": "11",
               "branch": "Север"
             },
             {
@@ -343,17 +343,17 @@
             },
             {
               "name": "Шпаклёвка",
-              "grade": "9–11",
+              "grade": "11",
               "branch": "Север"
             },
             {
               "name": "УОТЬ",
-              "grade": "9–11",
+              "grade": "10",
               "branch": "Север"
             },
             {
               "name": "Батон",
-              "grade": "9–11",
+              "grade": "9",
               "branch": "Север"
             },
             {
@@ -382,62 +382,62 @@
           "teams": [
             {
               "name": "Аэробус",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
               "name": "Koshkas",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Юг"
             },
             {
               "name": "Телепузики",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
               "name": "Strategy",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
               "name": "Baldi",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Юг"
             },
             {
               "name": "buymeraf",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Юг"
             },
             {
               "name": "Гусь",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
               "name": "КРЕНДЕЛЬ",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
               "name": "Аскарида",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Юг"
             },
             {
               "name": "Столешница",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Север"
             },
             {
               "name": "Острова",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Север"
             },
             {
               "name": "Витающие в облаках",
-              "grade": "7–8",
+              "grade": "7",
               "branch": "Север"
             },
             {
@@ -447,7 +447,7 @@
             },
             {
               "name": "Момыри",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
@@ -472,7 +472,7 @@
             },
             {
               "name": "БухШиша",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
@@ -482,22 +482,22 @@
             },
             {
               "name": "МММ",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
               "name": "Физикмастерс",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
               "name": "ВВС пчёлки",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
               "name": "Лопер-Хромова",
-              "grade": "7–8",
+              "grade": "8",
               "branch": "Север"
             },
             {
@@ -517,42 +517,42 @@
             },
             {
               "name": "SAMO",
-              "grade": "9–11",
+              "grade": "11",
               "branch": "Юг"
             },
             {
               "name": "Времена года",
-              "grade": "9–11",
+              "grade": "9",
               "branch": "Юг"
             },
             {
               "name": "Express",
-              "grade": "9–11",
+              "grade": "11",
               "branch": "Юг"
             },
             {
               "name": "СПЛ",
-              "grade": "9–11",
+              "grade": "11",
               "branch": "Юг"
             },
             {
               "name": "ИдеиЛуиБлана",
-              "grade": "9–11",
+              "grade": "9",
               "branch": "Юг"
             },
             {
               "name": "МММ",
-              "grade": "9–11",
+              "grade": "10",
               "branch": "Юг"
             },
             {
               "name": "RnB Club",
-              "grade": "9–11",
+              "grade": "10",
               "branch": "Север"
             },
             {
               "name": "Luka Magic",
-              "grade": "9–11",
+              "grade": "11",
               "branch": "Север"
             },
             {
@@ -567,7 +567,7 @@
             },
             {
               "name": "Shishkin House",
-              "grade": "9–11",
+              "grade": "11",
               "branch": "Север"
             },
             {
@@ -577,7 +577,7 @@
             },
             {
               "name": "Шпаклёвка",
-              "grade": "9–11",
+              "grade": "11",
               "branch": "Север"
             }
           ]
