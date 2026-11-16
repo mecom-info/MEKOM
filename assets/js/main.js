@@ -51,46 +51,6 @@
     });
   }
 
-  var THEME_KEY = "mekom-theme";
-  var CHAMP_THEME = "champ-2025";
-
-  function setStoredTheme(value) {
-    try {
-      if (value) {
-        window.localStorage.setItem(THEME_KEY, value);
-      } else {
-        window.localStorage.removeItem(THEME_KEY);
-      }
-    } catch (e) {
-      // localStorage недоступен (приватный режим и т.п.) — тема просто не запомнится.
-    }
-  }
-
-  function initThemeToggle() {
-    var btn = document.querySelector("[data-theme-toggle]");
-    if (!btn) return;
-
-    function isActive() {
-      return document.documentElement.getAttribute("data-theme") === CHAMP_THEME;
-    }
-
-    function sync() {
-      btn.setAttribute("aria-pressed", isActive() ? "true" : "false");
-    }
-    sync();
-
-    btn.addEventListener("click", function () {
-      if (isActive()) {
-        document.documentElement.removeAttribute("data-theme");
-        setStoredTheme(null);
-      } else {
-        document.documentElement.setAttribute("data-theme", CHAMP_THEME);
-        setStoredTheme(CHAMP_THEME);
-      }
-      sync();
-    });
-  }
-
   function initAccordions() {
     document.querySelectorAll(".accordion-trigger").forEach(function (btn) {
       btn.addEventListener("click", function () {
@@ -645,7 +605,6 @@
 
   document.addEventListener("DOMContentLoaded", function () {
     initNav();
-    initThemeToggle();
     initAccordions();
     initScrollReveal();
     renderSiteConfig();
