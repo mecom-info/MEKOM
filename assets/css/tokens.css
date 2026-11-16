@@ -1,0 +1,91 @@
+/* МЭКОМ — токены оформления: цвета и шрифты.
+   Палитра плакатов II чемпионата («Отборочный этап», «Вторая стадия»),
+   фиолетовый, бирюзовый, шалфейно-зелёный, белый.
+   Исходные цвета сняты с плакатов: бирюза #77C9DB, фиолет #523C91 / #7469AE,
+   лавандово-синий #6168A2, шалфей #B8CA8D, молочный #EFF0ED.
+   Оранжево-чёрная версия (2026-11-03) — в истории git.
+   Все пары текст/фон ниже проверены по WCAG, контраст не ниже 4.5:1
+   для обычного текста, фокус ≥3:1. */
+
+:root {
+  /* --- шрифты --- */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* --- светлый фон страницы: молочный и шалфей --- */
+  --color-bg: #f3f5ee;
+  --color-bg-rgb: 243 245 238;
+  --color-surface: #ffffff;
+  --color-surface-2: #e3e9d3;
+  --color-ink: #1d1838;
+  --color-ink-soft: #3b355e;
+  --color-muted: #57536f;
+  --color-border: #cfd5bf;
+
+  /* --- тёмные секции: шапка, герой, подвал — глубокий фиолетовый --- */
+  --color-dark: #3d2f7a;
+  --color-dark-rgb: 61 47 122;
+  --color-dark-soft: #4a3b8f;
+  --color-on-dark: #ffffff;
+  --color-on-dark-soft: #ddd8f3;
+  --color-on-dark-muted: #bdb6e2;
+  --color-on-dark-border: #6556a8;
+
+  /* --- акцент: бирюза с плаката, тёмный акцент — фиолет --- */
+  --color-accent: #77c9db;
+  --color-accent-dark: #4f3c99;
+  --color-accent-soft: #8fdcea;
+  --color-on-accent: #ffffff;
+
+  /* шалфей — второй цвет плаката, только для декора и подложек */
+  --color-sage: #b8ca8d;
+  --color-sage-dark: #6c7d57;
+
+  --color-focus: #2a93ab;
+
+  /* Цвет текста акцентной кнопки (.btn-primary/.btn-accent/.main-nav
+     a.btn-accent в style.css): отдельный токен, а не --color-dark напрямую,
+     потому что в теме champ-2025 ниже --color-dark сам становится светлым
+     розовым и на --color-accent не читается (2026-11-07,
+     контраст ≥4.5:1 пересчитан для каждой темы отдельно). */
+  --color-accent-text: #241a4f; /* на бирюзе 8.36:1 */
+
+  /* --- форма --- */
+  --radius: 14px;
+  --maxw: 1120px;
+}
+
+/* Розовая тема «Цвет чемпионата 2025/26» (розово-
+   белая версия — 2026-11-07). Живёт только на странице
+   архива сезона championship/2025-26/: никаких тёмных/чёрных/
+   тёмно-фиолетовых поверхностей — только розовый и белый, как на старом
+   сайте сезона (mecom-info.github.io/MEKOM: --blue:#FF1493, --blue-2:#FF69B4,
+   --bg:#f7fbff). «Тёмные» секции (шапка-заглушка, подвал, hero) здесь не
+   чёрные, а тёмно-розовые — тот же оттенок ~330°, что у ленты МЭКОМ, просто
+   темнее. Все текстовые пары ≥4.5:1, нетекстовые индикаторы (фокус) ≥3:1
+   (WCAG relative luminance). */
+html[data-theme="champ-2025"] {
+  --color-bg: #f8f2f5;
+  --color-bg-rgb: 248 242 245;
+  --color-surface-2: #f0e4ea;
+
+  --color-dark: #9c1457;
+  --color-dark-rgb: 156 20 87;
+  --color-dark-soft: #b01863;
+  --color-on-dark: #ffffff;
+  --color-on-dark-soft: #f6c9de;
+  --color-on-dark-muted: #efd0e1;
+  --color-on-dark-border: #c2487e;
+
+  --color-accent: #e7589f;
+  --color-accent-dark: #a62364;
+  --color-accent-soft: #f8cbe1;
+  --color-on-accent: #fcf6f9;
+
+  /* #45102c на #e7589f = 4.62:1 (было --color-dark #9c1457 = 2.37:1, блокер Б1) */
+  --color-accent-text: #45102c;
+
+  /* #a62364 (= --color-accent-dark) на фоне f8f2f5 = 6.24:1, на белых
+     карточках = 6.89:1 (было #f8cbe1 = 1.30:1/1.44:1, важное В1) */
+  --color-focus: var(--color-accent-dark);
+}

@@ -1,0 +1,24 @@
+{
+  "telegram_channel": {
+    "handle": "@mekom_info",
+    "url": "https://t.me/mekom_info"
+  },
+  "telegram_support": {
+    "handle": "@mekom_chat",
+    "url": "https://t.me/mekom_chat"
+  },
+  "registration": {
+    "bot_url": "https://t.me/mecom_tgk_bot?start=reg",
+    "fallback_note": "Если Google Форма не открывается — подайте заявку через бота @mecom_tgk_bot.",
+    "api_url": "",
+    "google_form_url": "https://docs.google.com/forms/d/e/1FAIpQLSedo7W8tZlgb4xTniDwnhxRV82AyKRjl4vc0ACAYrjb_h3Oyg/viewform"
+  },
+  "support_bot_url": "https://t.me/mecom_tgk_bot?start=support",
+  "partner_bot_url": "https://t.me/mecom_tgk_bot?start=partner",
+  "demo": {
+    "available": false,
+    "note": "Доступ к программе — по запросу.",
+    "request_via": "telegram_support"
+  },
+  "year": 2026
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>История МЭКОМ — справочник</title>
+<meta name="description" content="Откуда взялся МЭКОМ, почему старая программа перестала развиваться и как сообщество переносит игру на современные технологии.">
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20261115e">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261116a">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../">МЭКОМ</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Открыть меню">☰</button>
+    <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+      <a class="btn btn-accent" href="../championship/">Чемпионат</a>
+      <a href="../#about">Об игре</a>
+      <a href="../#decisions">Как играть</a>
+      <a href="./">Справочник</a>
+      <a href="../#community">Сообщество</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section aria-labelledby="history-title" data-reveal>
+    <div class="wrap handbook-layout">
+      <nav class="handbook-nav" aria-label="Разделы справочника">
+        <ul>
+          <li><a href="rules.html">Правила игры</a></li>
+          <li><a href="rif.html">РИФ</a></li>
+          <li><a href="reports.html">Отчёты</a></li>
+          <li><a href="history.html" aria-current="page">История</a></li>
+          <li><a href="regulations.html">Регламент</a></li>
+        </ul>
+      </nav>
+      <article class="handbook-article">
+        <h1 id="history-title">История МЭКОМ</h1>
+
+        <p>МЭКОМ — деловая игра-симулятор экономики фирмы, по которой десятилетиями
+        играли школьники и студенты: несколько команд управляют фирмами внутри одной
+        индустрии, а компьютер считает, что происходит на рынке после решений каждой
+        команды.</p>
+
+        <h2>Старая программа</h2>
+        <p>Расчёты в игре долгое время вела одна и та же программа для DOS. Ведущий вводил
+        решения команд, программа считала период и печатала каждой команде отчёт на
+        бумаге — устроенный так же, как показано на странице
+        <a href="reports.html">«Отчёты»</a>. Турниры по этой игре проходили на нескольких
+        площадках в разных городах, и в сумме в них участвовало немало команд.</p>
+
+        <p>У старой программы в какой-то момент не осталось ни активной поддержки, ни
+        исходного кода под рукой: она держалась на своём создателе и на дискетах с
+        сохранёнными партиями. Когда у человека, который её вёл, не осталось на это
+        времени, турниры постепенно сошли на нет.</p>
+
+        <div class="fact-box">
+          <strong>Мы не правопреемники и не официальная организация.</strong> Этот сайт —
+          проект энтузиастов, которые нашли старые материалы и решили, что игра стоит
+          того, чтобы её не потерять. Расчёт мы написали сами, с нуля — читая, в том
+          числе, код самой старой программы, и сверяя результат с архивными отчётами.
+        </div>
+
+        <h2>Что мы сделали</h2>
+        <p>У нас оказался архив настоящих партий прошлых лет: сохранённые игры и
+        распечатанные отчёты. Мы по шагам разобрались, как старая программа считала
+        период, и переписали тот же расчёт заново — на современном языке программирования,
+        без старого DOS-окружения. Программа готова.</p>
+
+        <p>Себя мы проверили честно: брали архивную партию, считали её нашим кодом и
+        построчно сравнивали результат с настоящими отчётами, которые когда-то получили
+        на руки реальные команды. Числа совпадают до копейки — без подгонки под
+        конкретный пример.</p>
+
+        <p>Ведущий работает в новой программе вместо старой DOS-программы: заводит лигу, заносит решения команд
+        и получает тот же отчёт, что и раньше, только без дискет и печати на
+        игольчатом принтере (можно и распечатать, если нужно на бумаге).</p>
+
+        <h2>Чемпионат</h2>
+        <p>Игры проходили в НИУ ВШЭ и в школе «Взмах». Первый чемпионат «Взмаха», сезон
+        2025/26, считался ещё на старой DOS-программе, запущенной в эмуляторе DOSBox.
+        Сезон 2026/27 идёт уже на новой программе, которую мы написали заново.
+        Сетка и результаты сезона 2025/26 — отдельная страница-архив:
+        <a href="../championship/2025-26/">Чемпионат 2025/26</a>. Текущий сезон собирается
+        на странице <a href="../championship/">«Чемпионат»</a>.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-cols">
+      <div>
+        <h3>Навигация</h3>
+        <p><a href="../#about">Об игре</a><br><a href="../championship/">Чемпионат</a><br><a href="./">Справочник</a></p>
+      </div>
+      <div>
+        <h3>Контакты</h3>
+        <p><a data-site="channel" href="https://t.me/mekom_info" target="_blank" rel="noopener">@mekom_info</a><br><a data-site="support" href="https://t.me/mekom_chat" target="_blank" rel="noopener">@mekom_chat</a></p>
+        <p><a data-site="support-bot" href="https://t.me/mecom_tgk_bot?start=support" target="_blank" rel="noopener">Техподдержка</a><br><a data-site="partner-bot" href="https://t.me/mecom_tgk_bot?start=partner" target="_blank" rel="noopener">Сотрудничество</a></p>
+      </div>
+      <div>
+        <h3>Проект</h3>
+        <p>Проект сообщества. МЭКОМ — игра 1997 года; мы не являемся правообладателем и не связаны с Junior Achievement, Inc.</p>
+      </div>
+    </div>
+    <div class="footer-legal">© <span data-site="year">2026</span> проект МЭКОМ · <a class="credit" href="https://www.youtube.com/watch?v=HIcSWuKMwOw" target="_blank" rel="noopener" title="почему?">мем</a></div>
+  </div>
+</footer>
+
+<script src="../assets/js/boot.js?v=20261115e" data-base="../"></script>
+<script src="../assets/js/main.js?v=20261115e"></script>
+</body>
+</html>

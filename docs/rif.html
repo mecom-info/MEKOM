@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>РИФ — рейтинговый индекс фирмы — справочник МЭКОМ</title>
+<meta name="description" content="Как считается рейтинговый индекс фирмы (РИФ) в игре МЭКОМ: шесть составляющих, базовые баллы и что мы проверили на архиве отчётов.">
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20261115e">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261116a">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../">МЭКОМ</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Открыть меню">☰</button>
+    <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+      <a class="btn btn-accent" href="../championship/">Чемпионат</a>
+      <a href="../#about">Об игре</a>
+      <a href="../#decisions">Как играть</a>
+      <a href="./">Справочник</a>
+      <a href="../#community">Сообщество</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section aria-labelledby="rif-title" data-reveal>
+    <div class="wrap handbook-layout">
+      <nav class="handbook-nav" aria-label="Разделы справочника">
+        <ul>
+          <li><a href="rules.html">Правила игры</a></li>
+          <li><a href="rif.html" aria-current="page">РИФ</a></li>
+          <li><a href="reports.html">Отчёты</a></li>
+          <li><a href="history.html">История</a></li>
+          <li><a href="regulations.html">Регламент</a></li>
+        </ul>
+      </nav>
+      <article class="handbook-article">
+        <h1 id="rif-title">РИФ — рейтинговый индекс фирмы</h1>
+
+        <p>РИФ — главный счёт игры: одно число на фирму, которое складывается из шести
+        составляющих и решает, кто проходит дальше по сетке турнира.</p>
+
+        <table>
+          <thead><tr><th>Составляющая</th><th>О чём она</th></tr></thead>
+          <tbody>
+            <tr><td>Накопленная прибыль</td><td>Сумма прибыли фирмы за все прошедшие периоды.</td></tr>
+            <tr><td>Потенциал спроса</td><td>Насколько маркетинг и НИОКР подняли интерес к фирме.</td></tr>
+            <tr><td>Потенциальное предложение</td><td>Доля фирмы в суммарном производстве индустрии.</td></tr>
+            <tr><td>Эффективность</td><td>Насколько загрузка мощностей близка к оптимальной.</td></tr>
+            <tr><td>Доля рынка</td><td>Доля фирмы в суммарных продажах периода.</td></tr>
+            <tr><td>Рост</td><td>Рост продаж фирмы относительно индустрии в целом.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="fact-box">
+          <strong>Нулевой период.</strong> В начале партии у всех фирм поровну —
+          по 100 баллов: 50 за накопленную прибыль и по 10 за каждую из пяти
+          оставшихся составляющих. Это проверено у всех 167 фирм в 37 партиях
+          архива — ровно 100 у всех, без исключений.
+        </div>
+
+        <h2>Что ограничено, а что нет</h2>
+        <p>Пять составляющих — потенциал спроса, потенциальное предложение,
+        эффективность, доля рынка, рост — упираются в свой потолок (10 или 20 баллов
+        каждая, в зависимости от составляющей) и не опускаются ниже нуля.</p>
+        <p><strong>Накопленная прибыль — исключение: у неё нет ни верхнего, ни
+        нижнего предела.</strong> Фирма с большой прибылью может увести РИФ заметно
+        выше 100+90, а фирма в убытке — увести его в минус. На архиве реальных партий
+        встречались значения и выше 400, и ниже нуля — до −392.</p>
+
+        <p>Эта разборка подтверждена не на словах: расчёт РИФ в нашей модели сходится
+        число в число с архивом настоящих отчётов, без подгонки под отдельные партии.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-cols">
+      <div>
+        <h3>Навигация</h3>
+        <p><a href="../#about">Об игре</a><br><a href="../championship/">Чемпионат</a><br><a href="./">Справочник</a></p>
+      </div>
+      <div>
+        <h3>Контакты</h3>
+        <p><a data-site="channel" href="https://t.me/mekom_info" target="_blank" rel="noopener">@mekom_info</a><br><a data-site="support" href="https://t.me/mekom_chat" target="_blank" rel="noopener">@mekom_chat</a></p>
+        <p><a data-site="support-bot" href="https://t.me/mecom_tgk_bot?start=support" target="_blank" rel="noopener">Техподдержка</a><br><a data-site="partner-bot" href="https://t.me/mecom_tgk_bot?start=partner" target="_blank" rel="noopener">Сотрудничество</a></p>
+      </div>
+      <div>
+        <h3>Проект</h3>
+        <p>Проект сообщества. МЭКОМ — игра 1997 года; мы не являемся правообладателем и не связаны с Junior Achievement, Inc.</p>
+      </div>
+    </div>
+    <div class="footer-legal">© <span data-site="year">2026</span> проект МЭКОМ · <a class="credit" href="https://www.youtube.com/watch?v=HIcSWuKMwOw" target="_blank" rel="noopener" title="почему?">мем</a></div>
+  </div>
+</footer>
+
+<script src="../assets/js/boot.js?v=20261115e" data-base="../"></script>
+<script src="../assets/js/main.js?v=20261115e"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Правила игры МЭКОМ — справочник</title>
+<meta name="description" content="Что происходит за один период игры МЭКОМ: пять решений команды, расчёт ведущего и отчёт по фирме.">
+<link rel="icon" href="../assets/favicon.svg">
+<link rel="stylesheet" href="../assets/css/tokens.css?v=20261115e">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261116a">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="../">МЭКОМ</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Открыть меню">☰</button>
+    <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
+      <a class="btn btn-accent" href="../championship/">Чемпионат</a>
+      <a href="../#about">Об игре</a>
+      <a href="../#decisions">Как играть</a>
+      <a href="./">Справочник</a>
+      <a href="../#community">Сообщество</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section aria-labelledby="rules-title" data-reveal>
+    <div class="wrap handbook-layout">
+      <nav class="handbook-nav" aria-label="Разделы справочника">
+        <ul>
+          <li><a href="rules.html" aria-current="page">Правила игры</a></li>
+          <li><a href="rif.html">РИФ</a></li>
+          <li><a href="reports.html">Отчёты</a></li>
+          <li><a href="history.html">История</a></li>
+          <li><a href="regulations.html">Регламент</a></li>
+        </ul>
+      </nav>
+      <article class="handbook-article">
+        <h1 id="rules-title">Правила игры</h1>
+
+        <p>Команда из 2–4 человек ведёт одну фирму внутри общей индустрии — нескольких
+        таких же команд, которые играют одновременно и видят только общие итоги рынка,
+        а не решения друг друга. Партия идёт несколько периодов подряд, один
+        период — один ход. В чемпионате периоды дополнительно группируются по
+        стадиям: отборочные → вторая стадия → полуфинал → финал — подробности
+        на странице <a href="../championship/">«Чемпионат»</a>.</p>
+
+        <h2>Что происходит за один период</h2>
+        <ol>
+          <li><strong>Команда сдаёт пять решений.</strong> Цена, производство, маркетинг,
+          инвестиции, НИОКР — см. карточки на главной странице в разделе «Как играть».</li>
+          <li><strong>Ведущий прогоняет расчёт.</strong> Решения всех фирм периода
+          обрабатываются вместе: модель считает общий спрос на индустрию, распределяет
+          заказы между фирмами и досчитывает результат каждой — себестоимость, продажи,
+          склад, прибыль, баланс.</li>
+          <li><strong>Команда получает отчёт.</strong> В нём — отчёт о прибылях и убытках
+          фирмы, баланс и показатели по индустрии целиком: средняя цена, суммарный спрос,
+          место фирмы среди конкурентов.</li>
+        </ol>
+
+        <div class="fact-box">
+          <strong>Как распределяются заказы.</strong> Чем ниже цена фирмы относительно
+          средней по индустрии и чем больше вложено в маркетинг и НИОКР — тем больше
+          заказов получает фирма. Это соревнование, а не лотерея: одинаковые решения
+          у всех дают одинаковый результат.
+        </div>
+
+        <h2>Что считается отдельно от решений</h2>
+        <ul>
+          <li><strong>Мощность.</strong> Инвестиции прошлых периодов увеличивают мощность,
+          амортизация её уменьшает. Производство выше мощности не бывает.</li>
+          <li><strong>Склад.</strong> Непроданные единицы переходят на следующий период
+          и стоят денег за хранение.</li>
+          <li><strong>Кредиты и проценты.</strong> Если денег на все расходы периода не
+          хватает, разница уходит в заём по ставке, которую задаёт ведущий; свободная
+          касса, наоборот, приносит депозитный процент.</li>
+        </ul>
+
+        <p>Итоговый счёт фирмы на каждом этапе — рейтинговый индекс фирмы (РИФ), подробно
+        разобран на <a href="rif.html">отдельной странице</a>.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-cols">
+      <div>
+        <h3>Навигация</h3>
+        <p><a href="../#about">Об игре</a><br><a href="../championship/">Чемпионат</a><br><a href="./">Справочник</a></p>
+      </div>
+      <div>
+        <h3>Контакты</h3>
+        <p><a data-site="channel" href="https://t.me/mekom_info" target="_blank" rel="noopener">@mekom_info</a><br><a data-site="support" href="https://t.me/mekom_chat" target="_blank" rel="noopener">@mekom_chat</a></p>
+        <p><a data-site="support-bot" href="https://t.me/mecom_tgk_bot?start=support" target="_blank" rel="noopener">Техподдержка</a><br><a data-site="partner-bot" href="https://t.me/mecom_tgk_bot?start=partner" target="_blank" rel="noopener">Сотрудничество</a></p>
+      </div>
+      <div>
+        <h3>Проект</h3>
+        <p>Проект сообщества. МЭКОМ — игра 1997 года; мы не являемся правообладателем и не связаны с Junior Achievement, Inc.</p>
+      </div>
+    </div>
+    <div class="footer-legal">© <span data-site="year">2026</span> проект МЭКОМ · <a class="credit" href="https://www.youtube.com/watch?v=HIcSWuKMwOw" target="_blank" rel="noopener" title="почему?">мем</a></div>
+  </div>
+</footer>
+
+<script src="../assets/js/boot.js?v=20261115e" data-base="../"></script>
+<script src="../assets/js/main.js?v=20261115e"></script>
+</body>
+</html>

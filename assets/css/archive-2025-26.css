@@ -1,0 +1,419 @@
+/* Архив сезона 2025/26 — изолированная копия турнирной сетки со старого
+   сайта. Классы с префиксом mc25- нарочно не пересекаются с style.css —
+   страница только для просмотра, ничего не редактируется и не пишется
+   в localStorage. */
+
+.mc25-badge {
+  display: inline-block;
+  background: var(--color-surface-2);
+  color: var(--color-ink-soft);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+
+.mc25-bracket {
+  background: linear-gradient(
+    90deg,
+    rgb(var(--color-dark-rgb) / 4%),
+    rgb(var(--color-dark-rgb) / 2%)
+  );
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.mc25-rounds-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.mc25-chip {
+  background: var(--color-surface-2);
+  color: var(--color-ink-soft);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 0;
+  cursor: pointer;
+}
+
+.mc25-chip.is-active {
+  background: var(--color-accent);
+  color: var(--color-dark);
+}
+
+.mc25-round[hidden] {
+  display: none;
+}
+
+.mc25-pack {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.mc25-pack-title {
+  font-weight: 800;
+  color: var(--color-ink);
+  margin-bottom: 10px;
+}
+
+.mc25-pack-contents {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mc25-team {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--color-surface-2);
+  flex-wrap: wrap;
+}
+
+.mc25-team-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 90px;
+}
+
+.mc25-team-name {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  text-align: right;
+}
+
+.mc25-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 7px;
+  border-radius: 999px;
+  display: inline-block;
+}
+
+.mc25-tag-grade {
+  background: rgb(var(--color-dark-rgb) / 8%);
+  color: var(--color-ink);
+}
+
+.mc25-tag-north {
+  background: rgba(0, 92, 255, 0.1);
+  color: #003cff;
+}
+
+.mc25-tag-south {
+  background: rgba(255, 59, 59, 0.1);
+  color: #d81a06;
+}
+
+.mc25-team.mc25-winner {
+  background: rgb(var(--color-dark-rgb) / 4%);
+  box-shadow: inset 0 0 0 1px var(--color-accent-soft);
+}
+
+.mc25-team.mc25-winner .mc25-team-name::after {
+  content: " \1F3C5";
+  margin-left: 6px;
+}
+
+.mc25-team.mc25-champion {
+  background: linear-gradient(90deg, #fff5cc, #ffe680);
+  box-shadow: inset 0 0 0 1px #e8c200;
+}
+
+.mc25-team.mc25-champion .mc25-team-name {
+  color: #533f00;
+}
+
+.mc25-team.mc25-champion .mc25-team-name::after {
+  content: " \1F451";
+  margin-left: 6px;
+}
+
+/* --- Фото сезона, победители, айдентика --- */
+
+.mc25-winner:not(.mc25-team) {
+  max-width: 480px;
+  margin-top: 16px;
+}
+
+/* height: auto обязателен: у <img> заданы width/height, и без него
+   браузер берёт высоту из атрибута, а ширину из CSS — фото вытягивается. */
+.mc25-winner:not(.mc25-team) img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  display: block;
+}
+
+.mc25-winner-caption {
+  margin: 10px 0 0;
+  font-weight: 700;
+  color: var(--color-accent-soft);
+}
+
+.mc25-photo-grid,
+.mc25-identity-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.mc25-photo-grid figure,
+.mc25-identity-grid figure {
+  margin: 0;
+}
+
+.mc25-photo-grid img,
+.mc25-identity-grid img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Фото разной пропорции (3:2, 4:3) — единая рамка, чтобы ряды и подписи
+   стояли ровно. Плакаты не обрезаем: они показываются целиком. */
+.mc25-photo-grid img,
+.mc25-misc-grid img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.mc25-photo-grid figcaption,
+.mc25-identity-grid figcaption {
+  margin-top: 6px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 760px) {
+  .mc25-team {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .mc25-team-left {
+    flex-direction: row;
+    align-self: flex-start;
+  }
+
+  /* minmax(0, 1fr), а не 1fr — тот же приём, что у .history-photos
+     в style.css: иначе длинные подписи задают минимальную ширину колонки
+     по min-content и дают горизонтальный скролл на 390px. */
+  .mc25-photo-grid,
+  .mc25-identity-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* На большом экране фото крупнее, но не на весь экран: 2 колонки вместо 4,
+   фиксированная высота кадра вместо пропорции — иначе широкие мониторы
+   делают кадр неоправданно высоким. Айдентику (значки, брелоки) не трогаем —
+   крупная айдентика смотрится хуже, чем ровная сетка мелких значков. */
+@media (min-width: 1024px) {
+  .mc25-winner:not(.mc25-team) {
+    max-width: 900px;
+  }
+
+  .mc25-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .mc25-photo-grid img {
+    aspect-ratio: auto;
+    height: 480px;
+    object-fit: cover;
+  }
+}
+
+/* --- Призовые 2025/26 (по мотивам .prizes-section старого сайта,
+   палитра нового сайта) --- */
+
+.prizes-section {
+  background: linear-gradient(90deg, var(--color-dark), var(--color-accent-dark));
+  color: var(--color-on-dark);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: 0 12px 34px rgb(var(--color-dark-rgb) / 18%);
+  margin-top: 16px;
+}
+
+.prizes-heading {
+  font-weight: 800;
+  font-size: 1.15rem;
+  margin: 4px 0 12px;
+  color: var(--color-on-dark);
+}
+
+.prizes-group {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent-soft);
+  margin: 14px 0 8px;
+}
+
+.prizes-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.prize-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 700;
+}
+
+.prize-row .value {
+  font-weight: 800;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.prize-row.highlight {
+  background: linear-gradient(90deg, #fff5cc, #ffe680);
+  color: #533f00;
+  box-shadow: 0 10px 30px rgba(255, 193, 7, 0.18);
+}
+
+.prize-row.place-2 {
+  box-shadow: inset 0 0 0 1px rgba(220, 224, 230, 0.55);
+}
+
+.prize-row.place-3 {
+  box-shadow: inset 0 0 0 1px rgba(205, 140, 90, 0.6);
+}
+
+@keyframes prizeRowIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .prizes-section.is-armed .prize-row { opacity: 0; }
+
+  .prizes-section.is-played .prize-row {
+    animation: prizeRowIn 420ms ease both;
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+
+  .prizes-section.is-played .prizes-heading {
+    animation: prizeRowIn 520ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+  }
+}
+
+/* --- Сетка по стадиям: трек со слайдами, точки, свайп --- */
+
+.mc25-chip { white-space: nowrap; }
+
+.mc25-swiper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  touch-action: pan-y pinch-zoom;
+  cursor: grab;
+  outline-offset: 3px;
+  transition: height 0.26s ease;
+}
+
+.mc25-swiper.is-dragging { cursor: grabbing; user-select: none; }
+
+.mc25-track {
+  display: flex;
+  align-items: flex-start;
+  will-change: transform;
+  transition: transform 0.26s ease;
+}
+
+.mc25-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.mc25-slide .mc25-pack:last-child { margin-bottom: 0; }
+
+.mc25-empty {
+  margin: 0;
+  padding: 18px 14px;
+  text-align: center;
+  color: var(--color-muted);
+  font-weight: 700;
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+}
+
+.mc25-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0 2px;
+}
+
+.mc25-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(var(--color-dark-rgb) / 22%);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.mc25-dot.is-active {
+  background: var(--color-accent);
+  transform: scale(1.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc25-swiper,
+  .mc25-track,
+  .mc25-dot { transition: none; }
+}
+
+.mc25-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Печать до анимации: строки видны, вместо счётчика — итоговое число. */
+@media print {
+  .prizes-section.is-armed .prize-row { opacity: 1; animation: none; }
+  .prizes-section .counter[aria-hidden="true"] { display: none; }
+  .prizes-section .mc25-sr {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+  }
+}
