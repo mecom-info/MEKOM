@@ -37,7 +37,7 @@
     var left = el("div", "mc25-team-left");
     left.appendChild(el("span", "mc25-tag mc25-tag-grade", team.grade + (/[–-]/.test(String(team.grade)) ? " классы" : " класс")));
     left.appendChild(el("span", "mc25-tag " + branchTagClass(team.branch), team.branch));
-    if (team.out) left.appendChild(el("span", "mc25-tag mc25-tag-out", "выбыла"));
+    if (team.out) left.appendChild(el("span", "mc25-tag mc25-tag-out", "банкрот"));
     t.appendChild(left);
     t.appendChild(el("div", "mc25-team-name", team.name));
     return t;
