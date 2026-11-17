@@ -433,3 +433,59 @@
   background: #e05a5a;
   color: #fff;
 }
+
+/* Сезон 2026/27: дата и сценарий этапа, таблица результатов группы. */
+.mc25-round-note {
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+.mc25-pack-note {
+  margin: -4px 0 10px;
+  font-size: 0.9em;
+  opacity: 0.75;
+}
+.mc25-table {
+  margin-top: 14px;
+}
+.mc25-table summary {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #3fb6d8;
+  color: #10202a;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+.mc25-table summary::-webkit-details-marker { display: none; }
+.mc25-table summary::after { content: " ▾"; }
+.mc25-table[open] summary::after { content: " ▴"; }
+.mc25-table-wrap {
+  margin-top: 10px;
+  overflow-x: auto;
+}
+.mc25-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 0.95em;
+}
+.mc25-table th,
+.mc25-table td {
+  padding: 7px 10px;
+  text-align: left;
+  border-bottom: 1px solid rgb(var(--color-dark-rgb) / 10%);
+}
+.mc25-table th { background: rgb(var(--color-dark-rgb) / 6%); }
+.mc25-table td.num,
+.mc25-table th:nth-child(n+3) { text-align: right; white-space: nowrap; }
+.mc25-table tr.is-winner td { background: #e6f7fd; }
+.mc25-table tr.is-out td { background: #fde8e8; color: #a33; }
+@media (max-width: 520px) {
+  .mc25-table table { font-size: 0.82em; }
+  .mc25-table th,
+  .mc25-table td { padding: 6px 5px; }
+  .mc25-table td:nth-child(2) { word-break: break-word; }
+}

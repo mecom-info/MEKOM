@@ -6,7 +6,7 @@
 (function () {
   "use strict";
 
-  var DATA_VERSION = "20261116c";
+  var DATA_VERSION = "20261117d";
   var SWIPE_RATIO = 0.18;   // доля ширины для переключения
   var FLICK_SPEED = 0.6;    // px/мс
   var LOCK_PX = 8;          // порог определения оси жеста
@@ -43,21 +43,57 @@
     return t;
   }
 
+  function fmt(n) {
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0").replace("-", "\u2212");
+  }
+
+  // Таблица результатов группы: раскрывается по кнопке, если у команд есть РИФ.
+  function renderTable(pack) {
+    var rows = pack.teams.filter(function (t) { return t.rif != null; });
+    if (!rows.length) return null;
+    var box = el("details", "mc25-table");
+    box.appendChild(el("summary", null, "Таблица результатов"));
+    var wrap = el("div", "mc25-table-wrap");
+    var table = el("table");
+    var head = el("tr");
+    ["№", "Команда", "РИФ", "Прибыль"].forEach(function (h) { head.appendChild(el("th", null, h)); });
+    var thead = el("thead"); thead.appendChild(head); table.appendChild(thead);
+    var tbody = el("tbody");
+    pack.teams.forEach(function (t, i) {
+      var tr = el("tr");
+      if (Array.isArray(pack.winnerIndex) && pack.winnerIndex.indexOf(i) !== -1) tr.className = "is-winner";
+      else if (t.out) tr.className = "is-out";
+      tr.appendChild(el("td", null, t.out ? "—" : String(i + 1)));
+      tr.appendChild(el("td", null, t.name));
+      tr.appendChild(el("td", "num", t.out ? "банкрот" : fmt(t.rif)));
+      tr.appendChild(el("td", "num", t.out ? "" : fmt(t.profit)));
+      tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    box.appendChild(wrap);
+    return box;
+  }
+
   function renderSlide(round, rIndex, emptyText) {
     var slide = el("div", "mc25-slide");
     slide.id = "mc25-slide-" + rIndex + "-" + Math.random().toString(36).slice(2, 7);
     slide.setAttribute("role", "tabpanel");
     var packs = round.packs || [];
     var hasTeams = packs.some(function (p) { return p.teams && p.teams.length; });
+    if (round.note) slide.appendChild(el("p", "mc25-round-note", round.note));
     packs.forEach(function (pack, pIndex) {
       if (!pack.teams || !pack.teams.length) return;
       var packEl = el("div", "mc25-pack");
       packEl.appendChild(el("div", "mc25-pack-title", pack.title));
+      if (pack.note) packEl.appendChild(el("div", "mc25-pack-note", pack.note));
       var contents = el("div", "mc25-pack-contents");
       pack.teams.forEach(function (team, tIndex) {
         contents.appendChild(renderTeam(team, pack, round, pIndex, tIndex));
       });
       packEl.appendChild(contents);
+      var table = renderTable(pack);
+      if (table) packEl.appendChild(table);
       slide.appendChild(packEl);
     });
     if (!hasTeams) slide.appendChild(el("p", "mc25-empty", emptyText));
