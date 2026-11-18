@@ -522,15 +522,322 @@
             {
               "name": "Столешница",
               "grade": "7",
-              "branch": "Север"
+              "branch": "Север",
+              "rif": 1475,
+              "profit": 548635
+            },
+            {
+              "name": "Полковник Запеканка",
+              "grade": "7–8",
+              "branch": "Север",
+              "rif": 922,
+              "profit": 339923
+            },
+            {
+              "name": "Luka Magic",
+              "grade": "11",
+              "branch": "Север",
+              "rif": 870,
+              "profit": 312363
             },
             {
               "name": "Острова",
               "grade": "7",
-              "branch": "Север"
+              "branch": "Север",
+              "rif": 592,
+              "profit": 204290
+            },
+            {
+              "name": "RnB Club",
+              "grade": "10",
+              "branch": "Север",
+              "rif": 552,
+              "profit": 185484
+            },
+            {
+              "name": "Момыри",
+              "grade": "8",
+              "branch": "Север",
+              "rif": 542,
+              "profit": 186344
+            },
+            {
+              "name": "ВВС Пчёлки",
+              "grade": "8",
+              "branch": "Север",
+              "rif": 428,
+              "profit": 143216
+            },
+            {
+              "name": "Снимай меня на камеру",
+              "grade": "9–11",
+              "branch": "Север",
+              "rif": 366,
+              "profit": 126454
             },
             {
               "name": "Витающие в облаках",
+              "grade": "7",
+              "branch": "Север",
+              "rif": 352,
+              "profit": 116023
+            },
+            {
+              "name": "Шпаклёвка",
+              "grade": "11",
+              "branch": "Север",
+              "rif": 272,
+              "profit": 92235
+            },
+            {
+              "name": "PufferFish",
+              "grade": "7–8",
+              "branch": "Север",
+              "rif": 271,
+              "profit": 88236
+            },
+            {
+              "name": "GNG",
+              "grade": "7–8",
+              "branch": "Север",
+              "rif": 270,
+              "profit": 92912
+            },
+            {
+              "name": "Ковалёв",
+              "grade": "7–8",
+              "branch": "Север",
+              "rif": 257,
+              "profit": 89245
+            },
+            {
+              "name": "Лопер-Хромова",
+              "grade": "8",
+              "branch": "Север",
+              "rif": 246,
+              "profit": 87087
+            },
+            {
+              "name": "#333 hERO/LA-333RP",
+              "grade": "9–11",
+              "branch": "Север",
+              "rif": 243,
+              "profit": 83291
+            },
+            {
+              "name": "Кальций",
+              "grade": "7–8",
+              "branch": "Север",
+              "rif": 224,
+              "profit": 75773
+            },
+            {
+              "name": "Соцкий-Новиков-Домнин",
+              "grade": "7–8",
+              "branch": "Север",
+              "rif": 221,
+              "profit": 67207
+            },
+            {
+              "name": "ФизикМастерс",
+              "grade": "8",
+              "branch": "Север",
+              "rif": 217,
+              "profit": 65134
+            },
+            {
+              "name": "Орден Киви Птиц",
+              "grade": "7–8",
+              "branch": "Север",
+              "rif": 203,
+              "profit": 68296
+            },
+            {
+              "name": "Й",
+              "grade": "9–11",
+              "branch": "Север",
+              "rif": 198,
+              "profit": 65360
+            },
+            {
+              "name": "Комната 13",
+              "grade": "7–8",
+              "branch": "Север",
+              "rif": 156,
+              "profit": 50660
+            },
+            {
+              "name": "Shishkin House",
+              "grade": "11",
+              "branch": "Север",
+              "rif": 124,
+              "profit": 27336
+            },
+            {
+              "name": "Сырник",
+              "grade": "7–8",
+              "branch": "Север",
+              "rif": 110,
+              "profit": 34513
+            },
+            {
+              "name": "МММ",
+              "grade": "10",
+              "branch": "Север",
+              "rif": 3,
+              "profit": -9618
+            },
+            {
+              "name": "БухШиша",
+              "grade": "8",
+              "branch": "Север",
+              "rif": -100,
+              "profit": -51842
+            }
+          ],
+          "winnerIndex": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "title": "Юг · 18 ноября",
+          "teams": [
+            {
+              "name": "Времена года",
+              "grade": "9",
+              "branch": "Юг",
+              "rif": 999,
+              "profit": 302956
+            },
+            {
+              "name": "Вишни",
+              "grade": "",
+              "branch": "Юг",
+              "rif": 991,
+              "profit": 300935
+            },
+            {
+              "name": "Express",
+              "grade": "11",
+              "branch": "Юг",
+              "rif": 868,
+              "profit": 262736
+            },
+            {
+              "name": "SAMO",
+              "grade": "11",
+              "branch": "Юг",
+              "rif": 484,
+              "profit": 140499
+            },
+            {
+              "name": "Strategy",
+              "grade": "7",
+              "branch": "Юг",
+              "rif": 350,
+              "profit": 97133
+            },
+            {
+              "name": "Koshkas",
+              "grade": "8",
+              "branch": "Юг",
+              "rif": 326,
+              "profit": 89959
+            },
+            {
+              "name": "buymeraf",
+              "grade": "8",
+              "branch": "Юг",
+              "rif": 266,
+              "profit": 71257
+            },
+            {
+              "name": "КРЕНДЕЛЬ",
+              "grade": "7",
+              "branch": "Юг",
+              "rif": 256,
+              "profit": 67695
+            },
+            {
+              "name": "МММ",
+              "grade": "10",
+              "branch": "Юг",
+              "rif": 251,
+              "profit": 66208
+            },
+            {
+              "name": "СПЛ",
+              "grade": "11",
+              "branch": "Юг",
+              "rif": 218,
+              "profit": 56977
+            },
+            {
+              "name": "Baldi",
+              "grade": "8",
+              "branch": "Юг",
+              "rif": 200,
+              "profit": 54787
+            },
+            {
+              "name": "Телепузики",
+              "grade": "7",
+              "branch": "Юг",
+              "rif": 155,
+              "profit": 38421
+            },
+            {
+              "name": "Аэробус",
+              "grade": "7",
+              "branch": "Юг",
+              "rif": 137,
+              "profit": 28640
+            },
+            {
+              "name": "Аскарида",
+              "grade": "7",
+              "branch": "Юг",
+              "rif": 81,
+              "profit": 13875
+            },
+            {
+              "name": "Гусь",
+              "grade": "7",
+              "branch": "Юг",
+              "rif": -69,
+              "profit": -34098
+            }
+          ],
+          "winnerIndex": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Полуфинал",
+      "packs": [
+        {
+          "title": "19 ноября",
+          "teams": [
+            {
+              "name": "Столешница",
               "grade": "7",
               "branch": "Север"
             },
@@ -540,47 +847,22 @@
               "branch": "Север"
             },
             {
-              "name": "Момыри",
-              "grade": "8",
+              "name": "Luka Magic",
+              "grade": "11",
               "branch": "Север"
             },
             {
-              "name": "Соцкий-Новиков-Домнин",
-              "grade": "7–8",
+              "name": "Острова",
+              "grade": "7",
               "branch": "Север"
             },
             {
-              "name": "Кальций",
-              "grade": "7–8",
-              "branch": "Север"
-            },
-            {
-              "name": "PufferFish",
-              "grade": "7–8",
-              "branch": "Север"
-            },
-            {
-              "name": "Сырник",
-              "grade": "7–8",
-              "branch": "Север"
-            },
-            {
-              "name": "БухШиша",
-              "grade": "8",
-              "branch": "Север"
-            },
-            {
-              "name": "Орден Киви Птиц",
-              "grade": "7–8",
-              "branch": "Север"
-            },
-            {
-              "name": "МММ",
+              "name": "RnB Club",
               "grade": "10",
               "branch": "Север"
             },
             {
-              "name": "ФизикМастерс",
+              "name": "Момыри",
               "grade": "8",
               "branch": "Север"
             },
@@ -590,67 +872,47 @@
               "branch": "Север"
             },
             {
-              "name": "Лопер-Хромова",
-              "grade": "8",
-              "branch": "Север"
-            },
-            {
-              "name": "Комната 13",
-              "grade": "7–8",
-              "branch": "Север"
-            },
-            {
-              "name": "Ковалёв",
-              "grade": "7–8",
-              "branch": "Север"
-            },
-            {
-              "name": "GNG",
-              "grade": "7–8",
-              "branch": "Север"
-            },
-            {
-              "name": "RnB Club",
-              "grade": "10",
-              "branch": "Север"
-            },
-            {
-              "name": "Luka Magic",
-              "grade": "11",
-              "branch": "Север"
-            },
-            {
-              "name": "Й",
-              "grade": "9–11",
-              "branch": "Север"
-            },
-            {
               "name": "Снимай меня на камеру",
               "grade": "9–11",
               "branch": "Север"
             },
             {
-              "name": "Shishkin House",
-              "grade": "11",
-              "branch": "Север"
-            },
-            {
-              "name": "#333 hERO/LA-333RP",
-              "grade": "9–11",
+              "name": "Витающие в облаках",
+              "grade": "7",
               "branch": "Север"
             },
             {
               "name": "Шпаклёвка",
               "grade": "11",
               "branch": "Север"
-            }
-          ]
-        },
-        {
-          "title": "Юг",
-          "teams": [
+            },
             {
-              "name": "Аэробус",
+              "name": "PufferFish",
+              "grade": "7–8",
+              "branch": "Север"
+            },
+            {
+              "name": "Времена года",
+              "grade": "9",
+              "branch": "Юг"
+            },
+            {
+              "name": "Вишни",
+              "grade": "",
+              "branch": "Юг"
+            },
+            {
+              "name": "Express",
+              "grade": "11",
+              "branch": "Юг"
+            },
+            {
+              "name": "SAMO",
+              "grade": "11",
+              "branch": "Юг"
+            },
+            {
+              "name": "Strategy",
               "grade": "7",
               "branch": "Юг"
             },
@@ -660,77 +922,13 @@
               "branch": "Юг"
             },
             {
-              "name": "Телепузики",
-              "grade": "7",
-              "branch": "Юг"
-            },
-            {
-              "name": "Strategy",
-              "grade": "7",
-              "branch": "Юг"
-            },
-            {
-              "name": "Baldi",
-              "grade": "8",
-              "branch": "Юг"
-            },
-            {
               "name": "buymeraf",
               "grade": "8",
-              "branch": "Юг"
-            },
-            {
-              "name": "Гусь",
-              "grade": "7",
-              "branch": "Юг"
-            },
-            {
-              "name": "КРЕНДЕЛЬ",
-              "grade": "7",
-              "branch": "Юг"
-            },
-            {
-              "name": "Аскарида",
-              "grade": "7",
-              "branch": "Юг"
-            },
-            {
-              "name": "SAMO",
-              "grade": "11",
-              "branch": "Юг"
-            },
-            {
-              "name": "Времена года",
-              "grade": "9",
-              "branch": "Юг"
-            },
-            {
-              "name": "Express",
-              "grade": "11",
-              "branch": "Юг"
-            },
-            {
-              "name": "СПЛ",
-              "grade": "11",
-              "branch": "Юг"
-            },
-            {
-              "name": "ИдеиЛуиБлана",
-              "grade": "9",
-              "branch": "Юг"
-            },
-            {
-              "name": "МММ",
-              "grade": "10",
               "branch": "Юг"
             }
           ]
         }
       ]
-    },
-    {
-      "name": "Полуфинал",
-      "packs": []
     },
     {
       "name": "Финал",
