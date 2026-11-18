@@ -6,7 +6,7 @@
 (function () {
   "use strict";
 
-  var DATA_VERSION = "20261118a";
+  var DATA_VERSION = "20261118c";
   var SWIPE_RATIO = 0.18;   // доля ширины для переключения
   var FLICK_SPEED = 0.6;    // px/мс
   var LOCK_PX = 8;          // порог определения оси жеста
