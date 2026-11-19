@@ -837,8 +837,153 @@
           "title": "19 ноября",
           "teams": [
             {
+              "name": "Luka Magic",
+              "grade": "11",
+              "branch": "Север",
+              "rif": 789,
+              "profit": 197977
+            },
+            {
+              "name": "Полковник Запеканка",
+              "grade": "7–8",
+              "branch": "Север",
+              "rif": 676,
+              "profit": 168152
+            },
+            {
+              "name": "Вишни",
+              "grade": "9",
+              "branch": "Юг",
+              "rif": 640,
+              "profit": 159521
+            },
+            {
+              "name": "SAMO",
+              "grade": "11",
+              "branch": "Юг",
+              "rif": 468,
+              "profit": 111230
+            },
+            {
+              "name": "Времена года",
+              "grade": "9",
+              "branch": "Юг",
+              "rif": 422,
+              "profit": 100303
+            },
+            {
               "name": "Столешница",
               "grade": "7",
+              "branch": "Север",
+              "rif": 412,
+              "profit": 93732
+            },
+            {
+              "name": "Момыри",
+              "grade": "8",
+              "branch": "Север",
+              "rif": 382,
+              "profit": 90818
+            },
+            {
+              "name": "Снимай меня на камеру",
+              "grade": "9–11",
+              "branch": "Север",
+              "rif": 291,
+              "profit": 69924
+            },
+            {
+              "name": "RnB Club",
+              "grade": "10",
+              "branch": "Север",
+              "rif": 273,
+              "profit": 61227
+            },
+            {
+              "name": "ВВС Пчёлки",
+              "grade": "8",
+              "branch": "Север",
+              "rif": 240,
+              "profit": 49654
+            },
+            {
+              "name": "PufferFish",
+              "grade": "7–8",
+              "branch": "Север",
+              "rif": 237,
+              "profit": 51763
+            },
+            {
+              "name": "buymeraf",
+              "grade": "8",
+              "branch": "Юг",
+              "rif": 210,
+              "profit": 45917
+            },
+            {
+              "name": "Strategy",
+              "grade": "7",
+              "branch": "Юг",
+              "rif": 199,
+              "profit": 40153
+            },
+            {
+              "name": "Koshkas",
+              "grade": "8",
+              "branch": "Юг",
+              "rif": 196,
+              "profit": 41538
+            },
+            {
+              "name": "Острова",
+              "grade": "7",
+              "branch": "Север",
+              "rif": 186,
+              "profit": 37854
+            },
+            {
+              "name": "Витающие в облаках",
+              "grade": "7",
+              "branch": "Север",
+              "rif": 139,
+              "profit": 31133
+            },
+            {
+              "name": "Шпаклёвка",
+              "grade": "11",
+              "branch": "Север",
+              "rif": 88,
+              "profit": 13536
+            },
+            {
+              "name": "Express",
+              "grade": "11",
+              "branch": "Юг",
+              "out": true
+            }
+          ],
+          "winnerIndex": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Финал",
+      "packs": [
+        {
+          "title": "Финальная пачка",
+          "teams": [
+            {
+              "name": "Luka Magic",
+              "grade": "11",
               "branch": "Север"
             },
             {
@@ -847,63 +992,8 @@
               "branch": "Север"
             },
             {
-              "name": "Luka Magic",
-              "grade": "11",
-              "branch": "Север"
-            },
-            {
-              "name": "Острова",
-              "grade": "7",
-              "branch": "Север"
-            },
-            {
-              "name": "RnB Club",
-              "grade": "10",
-              "branch": "Север"
-            },
-            {
-              "name": "Момыри",
-              "grade": "8",
-              "branch": "Север"
-            },
-            {
-              "name": "ВВС Пчёлки",
-              "grade": "8",
-              "branch": "Север"
-            },
-            {
-              "name": "Снимай меня на камеру",
-              "grade": "9–11",
-              "branch": "Север"
-            },
-            {
-              "name": "Витающие в облаках",
-              "grade": "7",
-              "branch": "Север"
-            },
-            {
-              "name": "Шпаклёвка",
-              "grade": "11",
-              "branch": "Север"
-            },
-            {
-              "name": "PufferFish",
-              "grade": "7–8",
-              "branch": "Север"
-            },
-            {
-              "name": "Времена года",
-              "grade": "9",
-              "branch": "Юг"
-            },
-            {
               "name": "Вишни",
               "grade": "9",
-              "branch": "Юг"
-            },
-            {
-              "name": "Express",
-              "grade": "11",
               "branch": "Юг"
             },
             {
@@ -912,27 +1002,28 @@
               "branch": "Юг"
             },
             {
-              "name": "Strategy",
+              "name": "Времена года",
+              "grade": "9",
+              "branch": "Юг"
+            },
+            {
+              "name": "Столешница",
               "grade": "7",
-              "branch": "Юг"
+              "branch": "Север"
             },
             {
-              "name": "Koshkas",
+              "name": "Момыри",
               "grade": "8",
-              "branch": "Юг"
+              "branch": "Север"
             },
             {
-              "name": "buymeraf",
-              "grade": "8",
-              "branch": "Юг"
+              "name": "Снимай меня на камеру",
+              "grade": "9–11",
+              "branch": "Север"
             }
           ]
         }
       ]
-    },
-    {
-      "name": "Финал",
-      "packs": []
     }
   ]
 }
