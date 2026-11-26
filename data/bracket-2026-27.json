@@ -980,51 +980,76 @@
       "note": "21 ноября",
       "packs": [
         {
-          "title": "Финальная пачка",
+          "title": "Финал",
           "teams": [
             {
-              "name": "Luka Magic",
+              "name": "SAMO",
               "grade": "11",
-              "branch": "Север"
+              "branch": "Юг",
+              "rif": 759,
+              "profit": 271729
             },
             {
               "name": "Полковник Запеканка",
               "grade": "7–8",
-              "branch": "Север"
+              "branch": "Север",
+              "rif": 565,
+              "profit": 199376
             },
             {
               "name": "Вишни",
               "grade": "9",
-              "branch": "Юг"
-            },
-            {
-              "name": "SAMO",
-              "grade": "11",
-              "branch": "Юг"
-            },
-            {
-              "name": "Времена года",
-              "grade": "9",
-              "branch": "Юг"
-            },
-            {
-              "name": "Столешница",
-              "grade": "7",
-              "branch": "Север"
-            },
-            {
-              "name": "Момыри",
-              "grade": "8",
-              "branch": "Север"
+              "branch": "Юг",
+              "rif": 382,
+              "profit": 126573
             },
             {
               "name": "Снимай меня на камеру",
               "grade": "9–11",
-              "branch": "Север"
+              "branch": "Север",
+              "rif": 256,
+              "profit": 83542
+            },
+            {
+              "name": "Luka Magic",
+              "grade": "11",
+              "branch": "Север",
+              "rif": 241,
+              "profit": 80193
+            },
+            {
+              "name": "Момыри",
+              "grade": "8",
+              "branch": "Север",
+              "rif": 240,
+              "profit": 76960
+            },
+            {
+              "name": "Столешница",
+              "grade": "7",
+              "branch": "Север",
+              "rif": 206,
+              "profit": 64182
+            },
+            {
+              "name": "Времена года",
+              "grade": "9",
+              "branch": "Юг",
+              "rif": 12,
+              "profit": -3565
             }
+          ],
+          "winnerIndex": [
+            0,
+            1,
+            2
           ]
         }
-      ]
+      ],
+      "winnerchamp": {
+        "pack": 0,
+        "index": 0
+      }
     }
   ]
 }

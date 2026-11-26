@@ -7,7 +7,7 @@
 <meta name="description" content="МЭКОМ — деловая игра-симулятор экономики фирмы. Правила, РИФ, чемпионат среди школьников и материалы для тех, кто хочет провести игру у себя.">
 <link rel="icon" href="assets/favicon.svg">
 <link rel="stylesheet" href="assets/css/tokens.css?v=20261115e">
-<link rel="stylesheet" href="assets/css/style.css?v=20261116a">
+<link rel="stylesheet" href="assets/css/style.css?v=20261125d">
 </head>
 <body>
 
@@ -27,33 +27,43 @@
 
 <main>
 
-  <!-- Блок 1. HERO -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="photo-placeholder" aria-hidden="true">
-      [ФОТО-1: зал/команды за ноутбуками во время чемпионата, горизонтальное, ≥1600px]
-    </div>
-    <div class="floaters" aria-hidden="true">
-      <svg class="floater" width="46" height="58" viewBox="0 0 46 58" aria-hidden="true"><rect x="10" y="0" width="16" height="30" fill="#ffffff"/><rect x="0" y="22" width="22" height="20" fill="#ffffff"/><rect x="18" y="38" width="28" height="20" fill="#ffffff" opacity="0.9"/></svg>
-      <svg class="floater" width="78" height="46" viewBox="0 0 78 46" aria-hidden="true"><polyline points="3,40 22,12 40,32 68,8" fill="none" stroke="#77c9db" stroke-width="5" stroke-linejoin="miter" stroke-linecap="square"/><polygon points="76,2 61,5 71,16" fill="#77c9db"/></svg>
-      <svg class="floater" width="40" height="44" viewBox="0 0 40 44" aria-hidden="true"><rect x="0" y="22" width="10" height="22" fill="#b8ca8d"/><rect x="15" y="10" width="10" height="34" fill="#b8ca8d"/><rect x="30" y="0" width="10" height="44" fill="#b8ca8d"/></svg>
-      <svg class="floater" width="64" height="26" viewBox="0 0 64 26" aria-hidden="true"><polyline points="2,22 12,6 22,16 32,4 42,18 52,8 62,20" fill="none" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/></svg>
-      <svg class="floater" width="36" height="36" viewBox="0 0 36 36" aria-hidden="true"><rect x="0" y="12" width="18" height="24" fill="#77c9db"/><rect x="12" y="0" width="24" height="18" fill="#77c9db" opacity="0.8"/></svg>
-      <svg class="floater" width="54" height="46" viewBox="0 0 54 46" aria-hidden="true"><polyline points="2,4 18,26 30,14 44,36" fill="none" stroke="#b8ca8d" stroke-width="5" stroke-linecap="square"/><polygon points="52,44 37,40 47,30" fill="#b8ca8d"/></svg>
-    </div>
-    <div class="wrap">
-      <h1 id="hero-title">МЭКОМ — экономическая игра, в которой решения считаются по-настоящему</h1>
-      <p>Вы руководите фирмой: цена, производство, маркетинг, инвестиции, НИОКР. Каждый период модель пересчитывает рынок и выдаёт отчёт. Побеждает не удача, а расчёт.</p>
-      <div class="cta-row">
-        <a class="btn btn-primary" data-reg-cta  href="https://docs.google.com/forms/d/e/1FAIpQLSedo7W8tZlgb4xTniDwnhxRV82AyKRjl4vc0ACAYrjb_h3Oyg/viewform" target="_blank" rel="noopener">Записаться на игру</a>
-        <a class="btn btn-accent" href="championship/">Чемпионат</a>
-        <a class="btn btn-ghost" href="#about">Как это работает</a>
+  <!-- Блок 1. Итог чемпионата на первом экране -->
+  <section id="champ2-home-hero" class="hero champion-hero" aria-labelledby="hero-title">
+    <div class="wrap champion-hero-layout">
+      <div class="champion-hero-copy">
+        <p class="champion-kicker">II чемпионат завершён · 21 ноября 2026</p>
+        <h1 id="hero-title">SAMO — победители II чемпионата МЭКОМ</h1>
+        <p>Команда второй раз подряд заняла первое место. В финале восьми сильнейших SAMO набрала <strong class="champion-score"><span>759</span> РИФ</strong>.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="championship/#champ2-season">Смотреть итоги чемпионата</a>
+          <a class="btn btn-ghost" href="#about">Как устроен МЭКОМ</a>
+        </div>
       </div>
-      <details class="fallback-reg">
-        <summary>Не получается зарегистрироваться?</summary>
-        <p class="fine">1. <span data-site="fallback-note">Если Google Форма не открывается — подайте заявку через бота @mecom_tgk_bot.</span></p>
-        <p class="fine">2. Не сработало и это — напишите в <a data-site="support-bot" href="https://t.me/mecom_tgk_bot?start=support" target="_blank" rel="noopener">техподдержку</a>, организаторы запишут вручную.</p>
-      </details>
-      <p class="fine">Игра 1997 года — и до сих пор лучший способ объяснить экономику за один вечер.</p>
+      <figure class="champion-hero-photo">
+        <img src="assets/img/history/2026-27/photos/photo-07.jpg" alt="Победители II чемпионата МЭКОМ — команда SAMO с кубком" width="2560" height="1706" fetchpriority="high">
+        <figcaption>SAMO · победители II чемпионата</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Блок 1б. Итог II чемпионата -->
+  <section id="champ2-result" class="section-accent" aria-labelledby="champ2-result-title" data-reveal>
+    <div class="wrap">
+      <h2 id="champ2-result-title">Лица второго чемпионата</h2>
+      <p class="section-lead">Победители, участники и команда, которая провела сезон.</p>
+      <div class="champ2-home-photos">
+        <figure><img src="assets/img/history/2026-27/photos/photo-15.jpg" alt="Команда SAMO во время финала II чемпионата" width="2560" height="1706" loading="lazy"><figcaption>SAMO во время финала</figcaption></figure>
+        <figure><img src="assets/img/history/2026-27/photos/photo-17.jpg" alt="Общее фото участников II чемпионата" width="2560" height="1706" loading="lazy"><figcaption>Участники II чемпионата</figcaption></figure>
+        <figure><img src="assets/img/history/2026-27/photos/photo-19.jpg" alt="Команда организаторов II чемпионата" width="2560" height="1706" loading="lazy"><figcaption>Команда организаторов</figcaption></figure>
+      </div>
+      <div class="champ2-podium" aria-label="Пьедестал II чемпионата">
+        <article class="champ2-podium-place is-first"><span class="champ2-medal">1</span><div><h3>SAMO</h3><p><strong>759</strong> РИФ</p></div></article>
+        <article class="champ2-podium-place"><span class="champ2-medal">2</span><div><h3>Полковник Запеканка</h3><p><strong>565</strong> РИФ</p></div></article>
+        <article class="champ2-podium-place"><span class="champ2-medal">3</span><div><h3>Вишни</h3><p><strong>382</strong> РИФ</p></div></article>
+      </div>
+      <div class="cta-row mt-24">
+        <a class="btn btn-accent" href="championship/#champ2-season">Фото, результаты и турнирная сетка</a>
+      </div>
     </div>
   </section>
 
@@ -159,6 +169,7 @@
     <div class="wrap">
       <h2 id="championship-teaser-title">Чемпионат</h2>
       <p class="section-lead" data-season>Сезон — загрузка…</p>
+      <p class="fine" data-season-note></p>
       <div class="stage-row" role="group" aria-label="Этапы чемпионата" data-stages>
         <span class="stage-pill">Отборочные</span>
         <span class="stage-pill">Вторая стадия</span>
@@ -166,7 +177,7 @@
         <span class="stage-pill">Финал</span>
       </div>
       <div class="cta-row mt-24">
-        <a class="btn btn-accent" href="championship/">Как участвовать и история чемпионатов</a>
+        <a class="btn btn-accent" href="championship/">Итоги, сетка и история чемпионатов</a>
       </div>
     </div>
   </section>
@@ -325,6 +336,6 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=20261116a"></script>
+<script src="assets/js/main.js?v=20261122a"></script>
 </body>
 </html>

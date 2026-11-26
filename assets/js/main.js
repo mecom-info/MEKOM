@@ -11,7 +11,7 @@
   "use strict";
 
   var BASE = window.MEKOM_BASE || "";
-  var DATA_VERSION = "20261117d";
+  var DATA_VERSION = "20261122a";
 
   function initNav() {
     var toggle = document.querySelector(".nav-toggle");

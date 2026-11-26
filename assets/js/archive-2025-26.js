@@ -166,10 +166,10 @@
   ];
 
   function init() {
+    initPrizes();
     var root = document.querySelector("[data-mc25-root]");
     if (!root || !window.MekomBracket) return;
     MekomBracket.mount(root, TOURNAMENT_DATA, { label: "Этапы сезона 2025/26" });
-    initPrizes();
   }
 
   // --- Призовые: строки въезжают по очереди, суммы считаются от 0 ---

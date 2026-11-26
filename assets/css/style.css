@@ -776,6 +776,433 @@ h3 {
 
 /* --- Фото-полоса --- */
 
+/* --- II чемпионат: главные фото, итоги и полный альбом --- */
+
+.champion-hero {
+  padding: 48px 0;
+}
+
+.champion-hero .champion-hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: center;
+  max-width: var(--maxw);
+}
+
+.champion-hero-copy {
+  display: grid;
+  gap: 20px;
+}
+
+.champion-kicker {
+  color: var(--color-accent-soft);
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.champion-score {
+  color: var(--color-accent-soft);
+  white-space: nowrap;
+}
+
+.champion-hero-photo,
+.champ2-home-photos figure,
+.champ2-season-photos figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.champion-hero-photo {
+  overflow: hidden;
+  border: 1px solid var(--color-on-dark-border);
+  border-radius: var(--radius);
+  background: var(--color-dark);
+}
+
+.champion-hero-photo img,
+.champ2-home-photos img,
+.champ2-season-photos img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.champion-hero-photo figcaption,
+.champ2-home-photos figcaption,
+.champ2-season-photos figcaption {
+  padding: 11px 14px 13px;
+  font-weight: 700;
+}
+
+.champ2-home-photos {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1fr;
+  gap: 18px;
+}
+
+.champ2-home-photos figure {
+  overflow: hidden;
+  border: 1px solid var(--color-on-dark-border);
+  border-radius: var(--radius);
+  background: rgb(255 255 255 / 8%);
+}
+
+.champ2-podium {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.champ2-podium-place {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--color-on-dark-border);
+  border-radius: var(--radius);
+  background: rgb(255 255 255 / 8%);
+}
+
+.champ2-podium-place.is-first {
+  border-color: var(--color-accent-soft);
+  background: rgb(119 201 219 / 14%);
+}
+
+.champ2-podium-place h3,
+.champ2-podium-place p {
+  margin: 0;
+}
+
+.champ2-medal {
+  display: grid;
+  place-items: center;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  color: var(--color-dark);
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+.champ2-season-photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+#champ2-season h1 {
+  margin: 0 0 24px;
+  color: var(--color-accent-soft);
+  font-size: clamp(1.7rem, 1.6vw + 1rem, 2.35rem);
+  line-height: 1.18;
+}
+
+.champ2-season-photos figure {
+  overflow: hidden;
+  border: 1px solid var(--color-on-dark-border);
+  border-radius: var(--radius);
+  background: rgb(255 255 255 / 8%);
+}
+
+.champ2-season-winner {
+  grid-column: 1 / -1;
+}
+
+.champ2-season-winner img {
+  max-height: 680px;
+}
+
+.champ2-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.champ2-final-table {
+  min-width: 620px;
+}
+
+.champ2-final-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.champ2-final-table caption {
+  padding: 16px 18px;
+  text-align: left;
+  color: var(--color-ink);
+  font-weight: 800;
+}
+
+.champ2-final-table th,
+.champ2-final-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.champ2-final-table th {
+  color: var(--color-on-dark);
+  background: var(--color-dark-soft);
+}
+
+.champ2-final-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.champ2-final-table .is-winner td {
+  color: var(--color-accent-dark);
+  font-weight: 800;
+  background: rgb(119 201 219 / 10%);
+}
+
+.champ2-funnel {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.champ2-funnel div {
+  display: grid;
+  gap: 3px;
+}
+
+.champ2-funnel strong {
+  color: var(--color-accent-dark);
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1;
+}
+
+.champ2-funnel span {
+  color: var(--color-ink-soft);
+  font-weight: 700;
+}
+
+.champ2-funnel i {
+  color: var(--color-accent-dark);
+  font-size: 1.6rem;
+  font-style: normal;
+}
+
+.champ2-featured-photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.champ2-featured-photos figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.champ2-featured-photos a,
+.champ2-featured-photos img {
+  display: block;
+  width: 100%;
+}
+
+.champ2-featured-photos a {
+  overflow: hidden;
+  border: 1px solid var(--color-on-dark-border);
+  border-radius: var(--radius);
+  background: var(--color-dark);
+}
+
+.champ2-featured-photos img {
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.champ2-featured-photos figcaption {
+  margin-top: 10px;
+  color: var(--color-on-dark);
+  font-weight: 700;
+}
+
+.champ2-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  padding: 0;
+  margin: 24px 0 0;
+  list-style: none;
+}
+
+.champ2-facts li {
+  padding-top: 16px;
+  border-top: 3px solid var(--color-accent-dark);
+  line-height: 1.55;
+}
+
+.champ2-facts strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.champ2-method-note {
+  padding: 20px 22px;
+  border-left: 5px solid var(--color-accent-dark);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: rgb(255 255 255 / 55%);
+}
+
+.champ2-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.champ2-photo-grid figure {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-on-dark-border);
+  border-radius: var(--radius);
+  background: rgb(255 255 255 / 8%);
+}
+
+.champ2-photo-grid a {
+  display: block;
+  overflow: hidden;
+  background: var(--color-dark);
+}
+
+.champ2-photo-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.champ2-photo-grid figcaption {
+  padding: 11px 13px 13px;
+  color: var(--color-on-dark);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .champ2-featured-photos img,
+  .champ2-photo-grid img {
+    transition: transform 0.25s ease;
+  }
+
+  .champ2-featured-photos a:hover img,
+  .champ2-photo-grid a:hover img {
+    transform: scale(1.025);
+  }
+}
+
+@media (max-width: 1000px) {
+  .champion-hero .champion-hero-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .champion-hero-photo {
+    max-width: 760px;
+  }
+
+  .champ2-home-photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .champ2-home-photos figure:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .champ2-photo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .hero.champion-hero {
+    padding: 36px 0 44px;
+  }
+
+  .champion-hero .champion-hero-layout,
+  .champ2-season-photos,
+  .champ2-podium {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .champ2-season-winner {
+    grid-column: auto;
+  }
+
+  #champ2-season {
+    padding-top: 32px;
+  }
+
+  #champ2-season h1 {
+    margin-bottom: 14px;
+  }
+
+  #champ2-season .section-lead {
+    margin-bottom: 18px;
+  }
+
+  .champ2-prizes-card .prize-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .champ2-prizes-card .prize-row .value {
+    text-align: left;
+  }
+
+  .champ2-funnel {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .champ2-funnel i {
+    display: none;
+  }
+
+  .champ2-photo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .champ2-featured-photos,
+  .champ2-facts {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .champ2-home-photos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .champ2-home-photos figure:first-child {
+    grid-column: auto;
+  }
+
+  .champ2-funnel {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .champ2-method-note {
+    padding: 17px 18px;
+  }
+}
+
 .photo-strip {
   display: grid;
   gap: 16px;
